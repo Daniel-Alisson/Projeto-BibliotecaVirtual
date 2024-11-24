@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="769.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.EmprestimoController">
+   <children>
+      <TextField fx:id="campoBuscaLivro" layoutX="62.0" layoutY="120.0" promptText="campoBuscaLivro" />
+      <Button layoutX="111.0" layoutY="175.0" mnemonicParsing="false" onAction="#buscarLivro" text="Buscar" />
+      <Label fx:id="textoTitulo" layoutX="64.0" layoutY="239.0" prefHeight="18.0" prefWidth="150.0" text="titulo" />
+      <Label fx:id="textoAutor" layoutX="61.0" layoutY="276.0" prefHeight="18.0" prefWidth="150.0" text="Autor" />
+      <Label fx:id="textoDisponibilidade" layoutX="58.0" layoutY="305.0" prefHeight="18.0" prefWidth="169.0" text="Editora" />
+      <Label fx:id="textoDataEmprestimo" layoutX="61.0" layoutY="340.0" text="Estoque" />
+      <ComboBox fx:id="comboAluno" layoutX="351.0" layoutY="188.0" prefWidth="150.0" />
+      <DatePicker fx:id="dataDevolucao1" layoutX="656.0" layoutY="188.0" />
+      <Label layoutX="68.0" layoutY="495.0" text="Label" />
+      <Label layoutX="68.0" layoutY="449.0" text="Label" />
+      <Label layoutX="61.0" layoutY="416.0" text="Label" />
+      <Button layoutX="439.0" layoutY="602.0" mnemonicParsing="false" onAction="#confirmarEmprestimo" text="Realizar Emprestimo" />
+      <ImageView fx:id="imgLivro" fitHeight="150.0" fitWidth="200.0" layoutX="412.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

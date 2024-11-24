@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="769.0" prefWidth="1024.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AdministradorController">
+   <children>
+      <TextField fx:id="campoEmail" layoutX="234.0" layoutY="187.0" promptText="email" />
+      <TextField fx:id="campoSenha" layoutX="235.0" layoutY="258.0" promptText="senha" />
+      <Label fx:id="alerta" layoutX="149.0" layoutY="352.0" prefHeight="18.0" prefWidth="318.0" />
+      <Button onAction="#loginAdministrador" layoutX="273.0" layoutY="492.0" mnemonicParsing="false" text="Login" />
+   </children>
+</AnchorPane>
