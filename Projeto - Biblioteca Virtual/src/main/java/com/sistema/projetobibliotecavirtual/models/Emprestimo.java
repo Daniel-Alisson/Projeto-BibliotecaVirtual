@@ -9,6 +9,7 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
 
+    // CONSTRUTOR
     public Emprestimo(int codigo, Aluno aluno, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
         this.codigo = codigo;
         this.aluno = aluno;

@@ -47,7 +47,6 @@ public class ListaController {
         colunaDisponibilidade.setCellValueFactory(livro ->
                 new SimpleStringProperty(livro.getValue().isDisponivel() ? "Disponível" : "Indisponível")
         );
-
         configurarPaginacao();
         configurarBusca();
     }

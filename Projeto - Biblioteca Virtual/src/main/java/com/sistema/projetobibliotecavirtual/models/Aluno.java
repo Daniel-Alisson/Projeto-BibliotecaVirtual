@@ -7,8 +7,10 @@ public class Aluno extends Pessoa {
     private String matricula;
     private String turma;
 
+    // POR ENQUANTO A LISTA DE ALUNOS SERÁ ARMAZENADA EM ARRAYLIST
     private static List<Aluno> listaAlunos = new ArrayList<>();
 
+    // CONSTRUTOR
     public Aluno(String nome, String cpf, String email, String telefone, String matricula, String turma) {
         super(nome, cpf, email, telefone);
         this.matricula = matricula;
@@ -31,6 +33,7 @@ public class Aluno extends Pessoa {
         this.turma = turma;
     }
 
+    // MÉTODO CADASTRAR ALUNO
     public static int cadastrarAluno(Aluno aluno) {
         for(Aluno alunoNovo : listaAlunos) {
             if(alunoNovo.getCpf().equals(aluno.getCpf())) {

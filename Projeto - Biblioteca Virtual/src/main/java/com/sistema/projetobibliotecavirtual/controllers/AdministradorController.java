@@ -1,10 +1,17 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Administrador;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 public class AdministradorController extends TrocarTelasController {
     @FXML
@@ -13,7 +20,8 @@ public class AdministradorController extends TrocarTelasController {
     @FXML
     Label alerta;
 
-    // TESTES
+    // AREA DE TESTE
+    // AQ JÁ TEM ALGUNS ADMINS CADASTRADOS OU SE PRECISAR ADICIONAR MAIS
     public void initialize() {
         Administrador admin = new Administrador("dan", "1", "dan1", "1", "123");
         Administrador admin2 = new Administrador("dan", "2", "dan2", "1", "123");
@@ -23,10 +31,11 @@ public class AdministradorController extends TrocarTelasController {
         Administrador.cadastrarAdministrador(admin3);
     }
 
+    // METODO PARA CADASTRAR UM ADMINISTRADOR
     @FXML
     private void cadastrarAdministrador(ActionEvent event) {
         String nome = campoNome.getText().trim();
-        String cpf = campoCpf.getText().trim();
+        String cpf = campoCpf.getText().replaceAll("\\.|-", "").trim();
         String email = campoEmail.getText().trim();
         String senha = campoSenha.getText().trim();
         String senha2 = campoSenha2.getText().trim();
@@ -35,9 +44,13 @@ public class AdministradorController extends TrocarTelasController {
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || senha.isEmpty() || senha2.isEmpty() || telefone.isEmpty()) {
             alerta.setText("Preencha todos os campos");
             return;
-        }
-
-        if(!senha.equals(senha2)) {
+        } if (!validarCPF(cpf)) {
+            alerta.setText("CPF inválido");
+            return;
+        } if (!email.contains("@") || !email.contains(".")) {
+            alerta.setText("E-mail inválido");
+            return;
+        } if (!senha.equals(senha2)) {
             alerta.setText("As senhas são diferentes");
             return;
         }
@@ -48,6 +61,7 @@ public class AdministradorController extends TrocarTelasController {
         switch (op) {
             case 0:
                 alerta.setText("Administrador cadastrado com sucesso!");
+                registrarLog("Cadastro realizado: " + nome + ", CPF: " + cpf);
                 limparCampos();
                 break;
             case 1:
@@ -57,18 +71,9 @@ public class AdministradorController extends TrocarTelasController {
                 alerta.setText("Já existe um administrador cadastrado com esse E-mail");
                 break;
         }
-        /*
-        SEM VERIFICADOR
-        Administrador adminNovo = new Administrador(nome, cpf, email, senha, telefone);
-        if(Administrador.cadastrarAdministrador(adminNovo)) {
-            alerta.setText("Administrador cadastrado com sucesso!");
-            limparCampos();
-        } else {
-            alerta.setText("Já existe um administrador cadastrado com esse cpf");
-        }
-        */
     }
 
+    // METODO PARA REALIZAR LOGIN DE UM ADMINISTRADOR
     @FXML
     private void loginAdministrador(ActionEvent event) {
         String email = campoEmail.getText();
@@ -78,12 +83,14 @@ public class AdministradorController extends TrocarTelasController {
 
         if(adminLogado != null) {
             alerta.setText("Login realizado com sucesso!");
+            registrarLog("Login realizado: E-mail: " + email);
             mudarTelalogin(event);
         } else {
             alerta.setText("Email ou senha inválidos!");
         }
     }
 
+    // METODO PARA LIMPAR CAMPOS
     @FXML
     private void limparCampos() {
         campoNome.clear();
@@ -92,5 +99,20 @@ public class AdministradorController extends TrocarTelasController {
         campoSenha.clear();
         campoSenha2.clear();
         campoTelefone.clear();
+    }
+
+    // METODO PARA REGISTRAR UM ARQUIVO DE LOG, PARA REGISTRAR AS FUNCIONALIDADES REALIZAS
+    private void registrarLog(String mensagem) {
+        try {
+            String log = java.time.LocalDateTime.now() + " - " + mensagem + "\n";
+            Files.write(Path.of("log.txt"), log.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+            alerta.setText("Erro ao registrar o log.");
+        }
+    }
+
+    private boolean validarCPF(String cpf) {
+        return cpf.matches("\\d{11}");
     }
 }

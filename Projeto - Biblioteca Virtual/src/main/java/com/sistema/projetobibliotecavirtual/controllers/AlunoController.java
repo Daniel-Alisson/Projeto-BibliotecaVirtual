@@ -1,6 +1,5 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
-import com.sistema.projetobibliotecavirtual.models.Administrador;
 import com.sistema.projetobibliotecavirtual.models.Aluno;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +13,7 @@ public class AlunoController extends TrocarTelasController {
     @FXML
     Label alerta;
 
+    // METODO PARA CADASTRAR ALUNOS
     @FXML
     private void cadastrarAlunos(ActionEvent event) {
         String nome = campoNome.getText().trim();
@@ -25,6 +25,15 @@ public class AlunoController extends TrocarTelasController {
 
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || matricula.isEmpty() || turma.isEmpty()) {
             alerta.setText("Preencha todos os campos");
+            return;
+        } if(!cpf.matches("\\d{11}")) {
+            alerta.setText("CPF inválido! Deve conter exatamente 11 dígitos numéricos.");
+            return;
+        } if(!email.matches("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            alerta.setText("Email inválido! Verifique o formato.");
+            return;
+        } if(!matricula.matches("\\d+")) {
+            alerta.setText("Matrícula inválida! Deve conter apenas números.");
             return;
         }
 
@@ -48,6 +57,7 @@ public class AlunoController extends TrocarTelasController {
         }
     }
 
+    // METODO PARA LIMPAR CAMPOS
     private void limparCampos() {
         campoNome.clear();
         campoCpf.clear();

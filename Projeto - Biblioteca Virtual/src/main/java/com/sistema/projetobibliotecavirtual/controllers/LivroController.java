@@ -41,21 +41,52 @@ public class LivroController extends TrocarTelasController {
     @FXML
     private void salvarLivro() {
         try {
-            String id = campoId.getText();
-            String titulo = campoTitulo.getText();
-            String autor = campoAutor.getText();
-            String editora = campoEditora.getText();
-            int estoque = Integer.parseInt(campoEstoque.getText());
+            String id = campoId.getText().trim();
+            String titulo = campoTitulo.getText().trim();
+            String autor = campoAutor.getText().trim();
+            String editora = campoEditora.getText().trim();
+            String estoqueTexto = campoEstoque.getText().trim();
+
+            if (id.isEmpty() || titulo.isEmpty() || autor.isEmpty() || editora.isEmpty() || estoqueTexto.isEmpty() || caminhoImagem == null) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Validação", "Preencha todos os campos corretamente.");
+                return;
+            }
+
+            if (!estoqueTexto.matches("\\d+")) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Validação", "O campo 'Estoque' deve conter apenas números.");
+                return;
+            }
+
+            int estoque = Integer.parseInt(estoqueTexto);
             boolean disponivel = campoDisponivel.isSelected();
 
             Livro livro = new Livro(id, titulo, autor, editora, estoque, disponivel, caminhoImagem);
-
-            System.out.println("Livro cadastrado com sucesso: " + livro.getTitulo());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Erro de Validação");
-            alert.setContentText("Por favor, preencha todos os campos corretamente.");
-            alert.showAndWait();
+            if (Livro.adicionarLivro(livro)) {
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Livro cadastrado com sucesso!");
+                limparCampos();
+            } else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Já existe um livro cadastrado com esse ID.");
+            }
+        } catch (Exception e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Ocorreu um erro ao cadastrar o livro.");
         }
+    }
+
+    private void limparCampos() {
+        campoId.clear();
+        campoTitulo.clear();
+        campoAutor.clear();
+        campoEditora.clear();
+        campoEstoque.clear();
+        campoDisponivel.setSelected(false);
+        foto.setImage(null);
+        caminhoImagem = null;
+    }
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        Alert alert = new Alert(tipo);
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 }

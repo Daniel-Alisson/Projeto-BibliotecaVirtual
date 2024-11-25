@@ -12,8 +12,10 @@ public class Livro {
     private boolean disponivel;
     private String caminhoFoto;
 
+    // POR ENQUANTO A LISTA DE LIVROS SERÁ ARMAZENADA EM ARRAYLIST
     private static List<Livro> listaLivros = new ArrayList<>();
 
+    // CONSTRUTOR
     public Livro(String id, String titulo, String autor, String editora, int estoque, boolean disponivel, String caminhoFoto) {
         this.autor = autor;
         this.disponivel = disponivel;
@@ -80,7 +82,15 @@ public class Livro {
         this.caminhoFoto = caminhoFoto;
     }
 
-    // ADICIONAR O METODO DE CADASTRAR AQ NA CLASSE
+    public static boolean adicionarLivro(Livro livro) {
+        for (Livro l : listaLivros) {
+            if (l.getId().equals(livro.getId())) {
+                return false; // Já existe um livro com o mesmo ID
+            }
+        }
+        listaLivros.add(livro);
+        return true;
+    }
 
     @Override
     public String toString() {
