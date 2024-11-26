@@ -1,14 +1,11 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
-
 import com.sistema.projetobibliotecavirtual.models.Livro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.time.LocalDate;
 
 public class EmprestimoController {
@@ -24,8 +21,6 @@ public class EmprestimoController {
     private DatePicker dataDevolucao1;
 
     private String livroSelecionado;
-
-    // TENTAR BOTAR A LISTA NA CLASSE EMPRESTIMO OU LIVRO
     private ObservableList<Livro> listaLivros = FXCollections.observableArrayList();
 
     @FXML
@@ -42,33 +37,25 @@ public class EmprestimoController {
             }
         });
 
-        // TESTES
         comboAluno.getItems().addAll("Aluno 1", "Aluno 2", "Aluno 3");
         comboAluno.setPromptText("Selecione um aluno");
         listaLivros.addAll(
-                new Livro("1", "teste1", "PVT LIDER", "true", 1, false, "imagens/imagem1.jpeg"),
-                new Livro("2", "1984", "PJ", "", 1, true, "imagens/imagem2.jpg"),
-                new Livro("3", "Teste3", "TAMECA", "true", 1, true, "imagens/imagem3.jpg")
+                new Livro("1", "teste1", "PVT LIDER", "true", 1),
+                new Livro("2", "1984", "PJ", "", 1),
+                new Livro("3", "Teste3", "TAMECA", "true", 1)
         );
     }
 
     @FXML
     private void buscarLivro() {
         String busca = campoBuscaLivro.getText();
-        // MELHORAR ISSO, ELE PROCULA POR ID OU TITULO, POREM TEM Q BOTAR O NOME INTEIRO
         for (Livro livro : listaLivros) {
             if (livro.getTitulo().equalsIgnoreCase(busca) || livro.getId().equals(busca)) {
                 livroSelecionado = livro.getTitulo();
                 textoTitulo.setText(livro.getTitulo());
                 textoAutor.setText(livro.getAutor());
                 textoDisponibilidade.setText(livro.isDisponivel() ? "Disponível" : "Indisponível");
-                try {
-                    Image imagem = new Image(getClass().getResourceAsStream("/" + livro.getCaminhoFoto()));
-                    imgLivro.setImage(imagem);
-                } catch (NullPointerException e) {
-                    imgLivro.setImage(null);
-                    System.out.println("Imagem não encontrada: " + livro.getCaminhoFoto());
-                }
+                imgLivro.setImage(null); // Placeholder caso imagens sejam adicionadas
                 return;
             }
         }

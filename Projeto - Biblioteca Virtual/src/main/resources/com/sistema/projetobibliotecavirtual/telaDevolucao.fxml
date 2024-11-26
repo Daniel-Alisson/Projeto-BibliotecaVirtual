@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.sistema.projetobibliotecavirtual.controllers.DevolucaoController">
+    <VBox alignment="CENTER" spacing="15" layoutX="300" layoutY="200">
+        <TextField fx:id="campoIdLivro" promptText="ID do Livro" />
+        <ComboBox fx:id="comboBoxAlunos" promptText="Selecione um Aluno" />
+        <Button fx:id="botaoRegistrarDevolucao" text="Registrar Devolução" onAction="#registrarDevolucao" />
+        <Label fx:id="labelMensagem" />
+    </VBox>
+</AnchorPane>

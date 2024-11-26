@@ -7,13 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-    // ESSA VAI SER A CLASSE PAI DAS OUTRAS CLASSES CONTROLADORAS, REDUZIR UM POUCO A REPETICAO DE METODOS
-public class TrocarTelasController {
-    // TODOS OS METODOS E ATRIBUTOS DEVEM TER ESSA OBSERVACAO @FXML PARA SINALIZAR QUE SÃO RELATIVOS DO JAVAFX
-    // OS METODOS DESSA CLASSE SÃO DE MUDANCA DE TELA E TALVEZ PARA CONFIGURAR A BARRA LATERAL, VOU TESTAR DPS
 
+public class TrocarTelasController {
     @FXML
     public void mudarTelaCadastro(ActionEvent event) {
         try {

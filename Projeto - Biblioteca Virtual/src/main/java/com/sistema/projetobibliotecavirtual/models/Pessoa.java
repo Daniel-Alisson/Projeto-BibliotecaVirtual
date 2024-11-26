@@ -1,13 +1,13 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-public abstract class Pessoa {
-    // AS CLASSES ALUNO E ADMINISTRADOR VÃO HERDAR DA CLASSE PESSOA
+import java.io.Serializable;
+
+public class Pessoa implements Serializable {
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
 
-    // CONTRUTOR
     public Pessoa(String nome, String cpf, String email, String telefone) {
         this.nome = nome;
         this.cpf = cpf;

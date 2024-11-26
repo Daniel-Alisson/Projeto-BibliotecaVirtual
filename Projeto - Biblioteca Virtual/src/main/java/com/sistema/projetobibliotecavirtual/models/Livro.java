@@ -1,5 +1,6 @@
 package com.sistema.projetobibliotecavirtual.models;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,85 +11,83 @@ public class Livro {
     private String editora;
     private int estoque;
     private boolean disponivel;
-    private String caminhoFoto;
 
-    // POR ENQUANTO A LISTA DE LIVROS SERÁ ARMAZENADA EM ARRAYLIST
     private static List<Livro> listaLivros = new ArrayList<>();
 
-    // CONSTRUTOR
-    public Livro(String id, String titulo, String autor, String editora, int estoque, boolean disponivel, String caminhoFoto) {
-        this.autor = autor;
-        this.disponivel = disponivel;
+    public Livro(String id, String titulo, String autor, String editora, int estoque) {
         this.id = id;
         this.titulo = titulo;
+        this.autor = autor;
         this.editora = editora;
         this.estoque = estoque;
-        this.caminhoFoto = caminhoFoto;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
+        this.disponivel = estoque > 0;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public String getAutor() {
+        return autor;
     }
 
     public String getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
-        this.editora = editora;
-    }
-
     public int getEstoque() {
         return estoque;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
     }
 
     public boolean isDisponivel() {
         return disponivel;
     }
 
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+        this.disponivel = estoque > 0;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
 
-    public String getCaminhoFoto() {
-        return caminhoFoto;
+    public void setEditora(String editora) {
+        this.editora = editora;
     }
 
-    public void setCaminhoFoto(String caminhoFoto) {
-        this.caminhoFoto = caminhoFoto;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public static List<Livro> getListaLivros() {
+        return listaLivros;
+    }
+
+    public static void setListaLivros(List<Livro> listaLivros) {
+        Livro.listaLivros = listaLivros;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public static boolean adicionarLivro(Livro livro) {
         for (Livro l : listaLivros) {
             if (l.getId().equals(livro.getId())) {
-                return false; // Já existe um livro com o mesmo ID
+                return false;
             }
         }
         listaLivros.add(livro);
+        //salvarLivrosEmArquivo();
         return true;
     }
 

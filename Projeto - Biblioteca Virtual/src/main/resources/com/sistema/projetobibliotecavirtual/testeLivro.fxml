@@ -12,7 +12,6 @@
       <TextField fx:id="campoAutor" layoutX="149.0" layoutY="278.0" promptText="autor" />
       <TextField fx:id="campoEditora" layoutX="150.0" layoutY="360.0" promptText="campoEditora" />
       <TextField fx:id="campoEstoque" layoutX="151.0" layoutY="427.0" promptText="estoque" />
-      <Button onAction="#escolherImagem" layoutX="369.0" layoutY="212.0" mnemonicParsing="false" text="carregar" />
       <Button onAction="#salvarLivro" layoutX="369.0" layoutY="278.0" mnemonicParsing="false" text="salvar" />
       <CheckBox fx:id="campoDisponivel" layoutX="505.0" layoutY="188.0" mnemonicParsing="false" text="disponivel" />
    </children>

@@ -13,7 +13,10 @@ public class AlunoController extends TrocarTelasController {
     @FXML
     Label alerta;
 
-    // METODO PARA CADASTRAR ALUNOS
+    public void initialize() {
+        Aluno.carregarAlunos();
+    }
+
     @FXML
     private void cadastrarAlunos(ActionEvent event) {
         String nome = campoNome.getText().trim();
@@ -57,7 +60,6 @@ public class AlunoController extends TrocarTelasController {
         }
     }
 
-    // METODO PARA LIMPAR CAMPOS
     private void limparCampos() {
         campoNome.clear();
         campoCpf.clear();

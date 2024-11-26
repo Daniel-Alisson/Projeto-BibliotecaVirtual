@@ -36,9 +36,9 @@ public class ListaController {
     public void initialize() {
         // TESTES
         listaLivros.addAll(
-                new Livro("1", "PJ", "TESTE1", "true", 1, false, "imagens/imagem1.jpeg"),
-                new Livro("2", "PVT LIDER", "TESTE2", "true", 1, true, "imagens/imagem2.jpg"),
-                new Livro("3", "TAMECA", "TESTE3", "true", 1, true, "imagens/imagem3.jpg")
+                new Livro("1", "PJ", "TESTE1", "true", 1),
+                new Livro("2", "PVT LIDER", "TESTE2", "true", 1),
+                new Livro("3", "TAMECA", "TESTE3", "true", 1)
         );
 
         colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));

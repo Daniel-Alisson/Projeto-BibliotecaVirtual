@@ -1,6 +1,8 @@
 package com.sistema.projetobibliotecavirtual.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Emprestimo {
     private int codigo;
@@ -9,7 +11,8 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
 
-    // CONSTRUTOR
+    private static List<Emprestimo> emprestimosAtivos = new ArrayList<>();
+
     public Emprestimo(int codigo, Aluno aluno, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
         this.codigo = codigo;
         this.aluno = aluno;
@@ -58,12 +61,36 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
-    // ADICIONAR O METODO DE EMPRESTIMO AQ TAMBÉM
+    public static boolean registrarDevolucao(int codigo) {
+        Emprestimo emprestimoEncontrado = null;
+
+        for (Emprestimo emprestimo : emprestimosAtivos) {
+            if (emprestimo.getCodigo() == codigo) {
+                emprestimoEncontrado = emprestimo;
+                break;
+            }
+        }
+
+        if (emprestimoEncontrado != null) {
+            Livro livro = emprestimoEncontrado.getLivro();
+            livro.setEstoque(livro.getEstoque() + 1);
+            emprestimosAtivos.remove(emprestimoEncontrado);
+            System.out.println("Devolução registrada com sucesso.");
+            return true;
+        }
+
+        System.out.println("Empréstimo não encontrado.");
+        return false;
+    }
+
+    public static List<Emprestimo> getEmprestimosAtivos() {
+        return emprestimosAtivos;
+    }
 
     @Override
     public String toString() {
-        return "EMPRESTIMO - " + codigo + "\n\nCodigo: " + codigo + "\n Aluno: " + aluno.getNome() +
-                "\nNº de matricula: " + aluno.getMatricula() + "\nLivro: " + livro.getTitulo() +
-                "\nData de Emprestimo: " + dataEmprestimo + "\n Data de Devolução: " + (dataDevolucao != null ? dataDevolucao : "Ainda não foi devolvido");
+        return "EMPRÉSTIMO - " + aluno.getNome() + "\n\nCódigo: " + codigo +
+                "\nLivro: " + livro.getTitulo() + "\nData Empréstimo: " + dataEmprestimo +
+                "\nData Devolução: " + dataDevolucao;
     }
 }

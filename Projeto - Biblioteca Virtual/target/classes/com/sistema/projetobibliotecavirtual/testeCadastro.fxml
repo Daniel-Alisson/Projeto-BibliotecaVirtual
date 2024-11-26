@@ -7,14 +7,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1024.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AdministradorController">
    <children>
-      <Label layoutX="348.0" layoutY="65.0" prefHeight="18.0" prefWidth="328.0" text="SO AS MERDAS DOS TESTES" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="340.0" layoutY="94.0" prefHeight="18.0" prefWidth="328.0" text="TESTES" textAlignment="CENTER" />
       <TextField fx:id="campoNome" layoutX="152.0" layoutY="194.0" promptText="NOME" />
-      <TextField fx:id="campoCpf" layoutX="167.0" layoutY="237.0" promptText="CPF" />
-      <TextField fx:id="campoEmail" layoutX="152.0" layoutY="303.0" promptText="EMAIL" />
-      <TextField fx:id="campoSenha" layoutX="167.0" layoutY="359.0" promptText="SENHA" />
-      <TextField fx:id="campoSenha2" layoutX="153.0" layoutY="426.0" promptText="SENHA NOVAMENTE" />
-      <TextField fx:id="campoTelefone" layoutX="422.0" layoutY="303.0" promptText="TELEFONE" />
-      <Button layoutX="471.0" layoutY="487.0" mnemonicParsing="false" onAction="#cadastrarAdministrador" text="Cadastrar" />
+      <TextField fx:id="campoCpf" layoutX="152.0" layoutY="262.0" promptText="CPF" />
+      <TextField fx:id="campoEmail" layoutX="429.0" layoutY="194.0" promptText="EMAIL" />
+      <TextField fx:id="campoSenha" layoutX="429.0" layoutY="262.0" promptText="SENHA" />
+      <TextField fx:id="campoSenha1" layoutX="711.0" layoutY="262.0" promptText="SENHA NOVAMENTE" />
+      <TextField fx:id="campoTelefone" layoutX="711.0" layoutY="194.0" promptText="TELEFONE" />
+      <Button layoutX="433.0" layoutY="385.0" mnemonicParsing="false" onAction="#cadastrarAdministrador" prefHeight="26.0" prefWidth="142.0" text="Cadastrar" />
       <Label fx:id="alerta" layoutX="200.0" layoutY="592.0" prefHeight="18.0" prefWidth="421.0" />
    </children>
 </AnchorPane>
