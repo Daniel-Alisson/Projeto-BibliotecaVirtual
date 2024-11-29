@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="769.0" maxWidth="1024.0" minHeight="769.0" minWidth="1024.0" prefHeight="769.0" prefWidth="1024.0" stylesheets="@telaLogin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AlunoController">
+   <children>
+      <VBox spacing="10" />
+      <VBox alignment="CENTER" layoutX="293.0" layoutY="199.0" prefHeight="370.0" prefWidth="438.0" spacing="20" style="-fx-background-color: #1A1A6B; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0);">
+         <children>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="198.0" text="Cadastrar Aluno" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="254.0" prefWidth="354.0" spacing="10">
+               <TextField fx:id="campoNome" prefHeight="40.0" prefWidth="300.0" promptText="Digite seu nome" />
+               <PasswordField fx:id="campoTurma" prefHeight="40.0" prefWidth="300.0" promptText="Digite sua tuma" />
+               <TextField fx:id="campoMatricula" prefHeight="40.0" prefWidth="300.0" promptText="Digite seu Nº Matricula" />
+               <TextField fx:id="campoTelefone" prefHeight="40.0" prefWidth="300.0" promptText="Digite seu telefone" />
+               <AnchorPane prefHeight="47.0" prefWidth="354.0">
+                  <children>
+                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="124.0" layoutY="8.0" prefWidth="100.0" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-pref-width: 140; -fx-pref-height: 35;" text="CADASTRAR" textAlignment="CENTER" />
+                  </children>
+               </AnchorPane>
+            </VBox>
+            <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="382.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="305.0" prefHeight="51.0" prefWidth="718.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
+         <children>
+            <Region prefHeight="200.0" prefWidth="400.0" />
+            <Button onAction="#mudarTelaLivro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Livros" />
+            <Button onAction="#mudarTelaAluno" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Alunos" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Empréstimos" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #001A66; -fx-padding: 10;">
+         <children>
+            <Label prefHeight="30.0" prefWidth="292.0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Biblioteca Teotonio Vilela" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

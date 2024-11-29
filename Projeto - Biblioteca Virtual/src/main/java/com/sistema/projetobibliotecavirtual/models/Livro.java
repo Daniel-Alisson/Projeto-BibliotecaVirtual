@@ -1,71 +1,74 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Livro {
-    private String id;
+    private int id;
     private String titulo;
     private String autor;
     private String editora;
     private int estoque;
-    private boolean disponivel;
+    private String genero;
 
+    // LISTA DE LIVROS
     private static List<Livro> listaLivros = new ArrayList<>();
 
-    public Livro(String id, String titulo, String autor, String editora, int estoque) {
+    public Livro(int id, String titulo, String autor, String editora, int estoque, String genero) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
         this.estoque = estoque;
-        this.disponivel = estoque > 0;
+        this.genero = genero;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getAutor() {
         return autor;
-    }
-
-    public String getEditora() {
-        return editora;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
-        this.disponivel = estoque > 0;
     }
 
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+    public String getEditora() {
+        return editora;
     }
 
     public void setEditora(String editora) {
         this.editora = editora;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public static List<Livro> getListaLivros() {
@@ -76,25 +79,28 @@ public class Livro {
         Livro.listaLivros = listaLivros;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public static boolean adicionarLivro(Livro livro) {
-        for (Livro l : listaLivros) {
-            if (l.getId().equals(livro.getId())) {
-                return false;
+    // METODO PARA ADICIONAR LIVRS NA LISTA
+    public int adicionarLivro(Livro livro) {
+        for(Livro livroNovo : listaLivros) {
+            if(livroNovo.getId() == livro.getId()) {
+                return 1;
+            } if(livroNovo.getTitulo().equals(livro.titulo)) {
+                return 2;
             }
         }
         listaLivros.add(livro);
-        //salvarLivrosEmArquivo();
-        return true;
+        return 0;
     }
 
     @Override
     public String toString() {
-        return "LIVRO - " + titulo + "\n\nId: " + id + "\nAutor: " + autor +
-                "\nEditora: " + editora + "\nEstoque: " + estoque +
-                "\nDisponibilidade: " + disponivel;
+        return "Livro{" +
+                "autor='" + autor + '\'' +
+                ", id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", editora='" + editora + '\'' +
+                ", estoque=" + estoque +
+                ", genero='" + genero + '\'' +
+                '}';
     }
 }

@@ -40,12 +40,12 @@ public class EmprestimoController {
         comboAluno.getItems().addAll("Aluno 1", "Aluno 2", "Aluno 3");
         comboAluno.setPromptText("Selecione um aluno");
         listaLivros.addAll(
-                new Livro("1", "teste1", "PVT LIDER", "true", 1),
-                new Livro("2", "1984", "PJ", "", 1),
-                new Livro("3", "Teste3", "TAMECA", "true", 1)
-        );
+                new Livro(1, "teste1", "PVT LIDER", "true", 1, "GENERO 1"),
+                new Livro(2, "1984", "PJ", "", 2, "GENERO 2"),
+                new Livro(3, "Teste3", "TAMECA", "true", 3, "GENERO 3"));
     }
 
+    /*
     @FXML
     private void buscarLivro() {
         String busca = campoBuscaLivro.getText();
@@ -64,6 +64,8 @@ public class EmprestimoController {
         textoDisponibilidade.setText("");
         imgLivro.setImage(null);
     }
+
+     */
 
     @FXML
     private void confirmarEmprestimo() {

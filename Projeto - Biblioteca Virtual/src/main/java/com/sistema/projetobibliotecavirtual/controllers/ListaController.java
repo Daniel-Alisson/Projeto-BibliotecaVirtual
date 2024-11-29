@@ -36,17 +36,17 @@ public class ListaController {
     public void initialize() {
         // TESTES
         listaLivros.addAll(
-                new Livro("1", "PJ", "TESTE1", "true", 1),
-                new Livro("2", "PVT LIDER", "TESTE2", "true", 1),
-                new Livro("3", "TAMECA", "TESTE3", "true", 1)
-        );
-
+                new Livro(1, "PJ", "TESTE1", "true", 1, "GENERO 1"),
+                new Livro(2, "PVT LIDER", "TESTE2", "true", 2, "GENERO 2"),
+                new Livro(3, "TAMECA", "TESTE3", "true", 3, "GENERO 3"));
         colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colunaAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        colunaDisponibilidade.setCellValueFactory(livro ->
+        /*colunaDisponibilidade.setCellValueFactory(livro ->
                 new SimpleStringProperty(livro.getValue().isDisponivel() ? "Disponível" : "Indisponível")
         );
+
+         */
         configurarPaginacao();
         configurarBusca();
     }
@@ -81,7 +81,7 @@ public class ListaController {
             configurarPaginacao();
         });
     }
-
+    /*
     @FXML
     private void verDetalhesLivro() {
         Livro livroSelecionado = tabelaLivros.getSelectionModel().getSelectedItem();
@@ -99,4 +99,6 @@ public class ListaController {
             alerta.showAndWait();
         }
     }
+
+     */
 }

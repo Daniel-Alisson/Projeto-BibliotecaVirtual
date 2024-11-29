@@ -3,36 +3,23 @@ package com.sistema.projetobibliotecavirtual.models;
 import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aluno extends Pessoa implements Serializable {
+public class Aluno {
     private String matricula;
     private String turma;
+    private String nome;
+    private String telefone;
 
+    // LISTA DE ALUNOS
     private static List<Aluno> listaAlunos = new ArrayList<>();
 
-    public Aluno(String nome, String cpf, String email, String telefone, String matricula, String turma) {
-        super(nome, cpf, email, telefone);
+    public Aluno(String nome, String turma, String matricula, String telefone) {
         this.matricula = matricula;
         this.turma = turma;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getTurma() {
-        return turma;
-    }
-
-    public void setTurma(String turma) {
-        this.turma = turma;
+        this.nome = nome;
+        this.telefone = telefone;
     }
 
     public static List<Aluno> getListaAlunos() {
@@ -43,18 +30,46 @@ public class Aluno extends Pessoa implements Serializable {
         Aluno.listaAlunos = listaAlunos;
     }
 
-    public static int cadastrarAluno(Aluno aluno) {
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    // METODO PARA CADASTRAR ALUNOS
+    public int cadastrarAluno(Aluno aluno) {
         for(Aluno alunoNovo : listaAlunos) {
-            if(alunoNovo.getCpf().equals(aluno.getCpf())) {
+            if(alunoNovo.getMatricula().equals(aluno.getMatricula())) {
                 return 1;
-            } if(alunoNovo.getEmail().equals(aluno.getEmail())) {
-                return 2;
-            } if(alunoNovo.getMatricula().equals(aluno.getMatricula())) {
-                return 3;
             }
         }
         listaAlunos.add(aluno);
-        //salvarAlunos();
         return 0;
     }
 

@@ -4,88 +4,61 @@ import com.sistema.projetobibliotecavirtual.models.Livro;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LivroController extends TrocarTelasController {
+    // CAMPOS DO CADASTRO
     @FXML
-    private TextField campoId, campoTitulo, campoAutor, campoEditora, campoEstoque;
+    private TextField campoId, campoTitulo, campoAutor, campoEditora, campoEstoque, campoGenero;
+    // EXIBE A MENSAGEM DE ALERTA, OU DE DIVERGENCIA DOS DADOS CADASTRADOS
+    @FXML
+    Label alerta;
 
+    // METODO PARA CADASTRAR LIVROS
     @FXML
-    private void salvarLivro() {
+    private void cadastrarLivro() {
         try {
-            String id = campoId.getText().trim();
+            int id = Integer.parseInt(campoId.getText().trim());
             String titulo = campoTitulo.getText().trim();
             String autor = campoAutor.getText().trim();
             String editora = campoEditora.getText().trim();
-            String estoqueTexto = campoEstoque.getText().trim();
+            int estoque = Integer.parseInt(campoEstoque.getText().trim());
+            String genero = campoGenero.getText().trim();
 
-            if(id.isEmpty() || titulo.isEmpty() || autor.isEmpty() || editora.isEmpty() || estoqueTexto.isEmpty()) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Validação", "Preencha todos os campos corretamente.");
+            if(titulo.isEmpty() || autor.isEmpty() || editora.isEmpty() || campoId.getText().trim().isEmpty() || campoEstoque.getText().trim().isEmpty()) {
+                alerta.setText("Preencha todos os campos");
                 return;
             }
 
-            if(!estoqueTexto.matches("\\d+")) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Erro de Validação", "O campo 'Estoque' deve conter apenas números.");
-                return;
-            }
+            Livro livroNovo = new Livro(id, titulo, autor, editora, estoque, genero);
 
-            int estoque = Integer.parseInt(estoqueTexto);
-            Livro livro = new Livro(id, titulo, autor, editora, estoque);
+            int op = livroNovo.adicionarLivro(livroNovo);
 
-            boolean livroExistente = false;
-            for (Livro livro2 : Livro.getListaLivros()) {
-                if (livro2.getId().equals(id) || livro2.getTitulo().equals(titulo)) {
-                    livroExistente = true;
-                    break;
-                }
-            }
-            if(livroExistente) {
-                Alert alertConfirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-                alertConfirmacao.setTitle("Livro Existente");
-                alertConfirmacao.setHeaderText("Livro com o mesmo ID ou título já existe!");
-                alertConfirmacao.setContentText("Deseja adicionar mais exemplares deste livro ao estoque?");
-
-                alertConfirmacao.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        for (Livro livro2 : Livro.getListaLivros()) {
-                            if (livro2.getId().equals(id) || livro2.getTitulo().equals(titulo)) {
-                                int novoEstoque = livro2.getEstoque() + estoque;
-                                livro2.setEstoque(novoEstoque);
-                                mostrarAlerta(Alert.AlertType.INFORMATION, "Estoque Atualizado",
-                                        "Estoque do livro '" + livro2.getTitulo() + "' foi atualizado!");
-                                break;
-                            }
-                        }
-                    } else {
-                        mostrarAlerta(Alert.AlertType.INFORMATION, "Operação Cancelada", "Nenhum livro foi adicionado.");
-                    }
-                });
-            } else {
-                if (Livro.adicionarLivro(livro)) {
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Livro cadastrado com sucesso!");
+            switch(op) {
+                case 0:
+                    alerta.setText("Livro cadastrado com sucesso!");
                     limparCampos();
-                } else {
-                    mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao adicionar o livro.");
-                }
+                    break;
+                case 1:
+                    alerta.setText("Já existe um livro cadastrado com esse ID");
+                    break;
+                case 2:
+                    alerta.setText("Já existe um livro cadastrado com esse Titulo");
+                    // adicinar funcionalidade para adicionar estoque
+                    break;
             }
-
-        } catch (Exception e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Ocorreu um erro ao cadastrar o livro.");
+        } catch(Exception e) {
+            alerta.setText("Ocorreu um erro ao cadastrar o livro.");
         }
     }
 
+    // METODO PARA LIMPAR CAMPOS
     private void limparCampos() {
         campoId.clear();
         campoTitulo.clear();
         campoAutor.clear();
         campoEditora.clear();
         campoEstoque.clear();
-    }
-
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setHeaderText(titulo);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }
