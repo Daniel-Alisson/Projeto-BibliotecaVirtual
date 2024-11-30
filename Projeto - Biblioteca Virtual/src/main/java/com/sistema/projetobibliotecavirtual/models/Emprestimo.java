@@ -1,10 +1,13 @@
 package com.sistema.projetobibliotecavirtual.models;
 
+import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable {
     private int codigo;
     private Aluno aluno;
     private Livro livro;
@@ -68,6 +71,17 @@ public class Emprestimo {
 
     public void setLivro(Livro livro) {
         this.livro = livro;
+    }
+
+    public static void salvarListaEmprestimoAtivos(String caminhoArquivo) {
+        SerializacaoService.salvarObjeto(emprestimosAtivos, caminhoArquivo);
+    }
+
+    public static void carregarListaEmprestimosAtivos(String caminhoArquivo) {
+        List<Emprestimo> listaCarregada = (List<Emprestimo>) SerializacaoService.carregarObjeto(caminhoArquivo);
+        if(listaCarregada != null) {
+            emprestimosAtivos = listaCarregada;
+        }
     }
 
     @Override

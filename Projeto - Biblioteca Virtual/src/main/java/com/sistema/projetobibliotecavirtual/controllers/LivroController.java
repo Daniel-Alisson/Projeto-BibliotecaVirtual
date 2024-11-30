@@ -62,7 +62,6 @@ public class LivroController extends TrocarTelasController {
                     break;
                 case 2:
                     alerta.setText("Já existe um livro cadastrado com esse Titulo");
-                    // adicinar funcionalidade para adicionar estoque
                     break;
             }
         } catch(Exception e) {

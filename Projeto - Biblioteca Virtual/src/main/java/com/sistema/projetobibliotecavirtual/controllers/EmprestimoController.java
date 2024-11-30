@@ -3,6 +3,7 @@ package com.sistema.projetobibliotecavirtual.controllers;
 import com.sistema.projetobibliotecavirtual.models.Aluno;
 import com.sistema.projetobibliotecavirtual.models.Emprestimo;
 import com.sistema.projetobibliotecavirtual.models.Livro;
+import com.sistema.projetobibliotecavirtual.services.LogService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -87,6 +88,8 @@ public class EmprestimoController extends TrocarTelasController {
             Emprestimo.getEmprestimosAtivos().add(emprestimo);
             Livro.getListaLivros().remove(livroSelecionado);
             alerta.setText("Empréstimo realizado com sucesso!");
+            Emprestimo.salvarListaEmprestimoAtivos("emprestimosAtivos.ser");
+            Livro.salvarListaLivros("livros.ser");
             limparCampos();
         } catch (Exception e) {
             alerta.setText("Erro ao realizar o empréstimo.");

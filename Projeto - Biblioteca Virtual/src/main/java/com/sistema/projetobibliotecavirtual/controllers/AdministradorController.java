@@ -1,6 +1,10 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Administrador;
+import com.sistema.projetobibliotecavirtual.models.Aluno;
+import com.sistema.projetobibliotecavirtual.models.Emprestimo;
+import com.sistema.projetobibliotecavirtual.models.Livro;
+import com.sistema.projetobibliotecavirtual.services.LogService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,6 +17,13 @@ public class AdministradorController extends TrocarTelasController {
     // EXIBE A MENSAGEM DE ALERTA, OU DE DIVERGENCIA DOS DADOS CADASTRADOS
     @FXML
     Label alerta;
+
+    public void initialize() {
+        Administrador.carregarListaAdministradores("administradores.ser");
+        Aluno.carregarListaAlunos("alunos.ser");
+        Livro.carregarListaLivros("livros.ser");
+        Emprestimo.carregarListaEmprestimosAtivos("emprestimosAtivos.ser");
+    }
 
     // METODO PARA CADASTRAR ADMINISTRADORES
     @FXML

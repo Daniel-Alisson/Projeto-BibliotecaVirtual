@@ -1,9 +1,13 @@
 package com.sistema.projetobibliotecavirtual.models;
 
+import com.sistema.projetobibliotecavirtual.services.LogService;
+import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Administrador extends Pessoa {
+public class Administrador extends Pessoa implements Serializable {
     private String senha;
 
     // LISTA PARA GUARDAR ADMINS
@@ -41,6 +45,7 @@ public class Administrador extends Pessoa {
             }
         }
         listaAdministradores.add(administrador);
+        salvarListaAdministradores("administradores.ser");
         return 0;
     }
 
@@ -52,5 +57,16 @@ public class Administrador extends Pessoa {
             }
         }
         return null;
+    }
+
+    public static void salvarListaAdministradores(String caminhoArquivo) {
+        SerializacaoService.salvarObjeto(listaAdministradores, caminhoArquivo);
+    }
+
+    public static void carregarListaAdministradores(String caminhoArquivo) {
+        List<Administrador> listaCarregada = (List<Administrador>) SerializacaoService.carregarObjeto(caminhoArquivo);
+        if (listaCarregada != null) {
+            listaAdministradores = listaCarregada;
+        }
     }
 }

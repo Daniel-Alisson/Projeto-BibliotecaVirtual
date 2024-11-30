@@ -2,18 +2,24 @@ package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Livro;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-public class ListaController extends TrocarTelasController  {
+public class ListaController extends TrocarTelasController {
     @FXML
     private TextField campoBusca;
     @FXML
@@ -46,12 +52,10 @@ public class ListaController extends TrocarTelasController  {
             titulo.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
             titulo.setWrapText(true);
 
-            Button botaoSelecionar = new Button("Selecionar");
-            botaoSelecionar.setOnAction(event -> {
-                System.out.println("Livro selecionado: " + livro.getTitulo());
-            });
+            Label idLivro = new Label("ID: " + livro.getId()); // Exibe o ID do livro
+            idLivro.setStyle("-fx-font-size: 12px; -fx-font-style: italic;");
 
-            VBox itemLivro = new VBox(10, imagemCapa, titulo, botaoSelecionar);
+            VBox itemLivro = new VBox(10, imagemCapa, titulo, idLivro);
             itemLivro.setStyle("-fx-alignment: center;");
             itemLivro.setSpacing(15);
 
@@ -69,7 +73,7 @@ public class ListaController extends TrocarTelasController  {
     @FXML
     private void buscarLivro() {
         String idTexto = campoBusca.getText().trim();
-        if(idTexto.isEmpty()) {
+        if (idTexto.isEmpty()) {
             listarLivros(Livro.getListaLivros());
             return;
         }

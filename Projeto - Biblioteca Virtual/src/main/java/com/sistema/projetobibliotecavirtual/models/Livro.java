@@ -1,9 +1,13 @@
 package com.sistema.projetobibliotecavirtual.models;
 
+import com.sistema.projetobibliotecavirtual.services.LogService;
+import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Livro {
+public class Livro implements Serializable {
     private int id;
     private String titulo;
     private String autor;
@@ -99,7 +103,19 @@ public class Livro {
             }
         }
         listaLivros.add(livro);
+        salvarListaLivros("livros.ser");
         return 0;
+    }
+
+    public static void salvarListaLivros(String caminhoArquivo) {
+        SerializacaoService.salvarObjeto(listaLivros, caminhoArquivo);
+    }
+
+    public static void carregarListaLivros(String caminhoArquivo) {
+        List<Livro> listaCarregada = (List<Livro>) SerializacaoService.carregarObjeto(caminhoArquivo);
+        if (listaCarregada != null) {
+            listaLivros = listaCarregada;
+        }
     }
 
     @Override

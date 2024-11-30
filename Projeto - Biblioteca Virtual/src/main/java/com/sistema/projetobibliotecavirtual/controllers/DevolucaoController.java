@@ -2,6 +2,7 @@ package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Emprestimo;
 import com.sistema.projetobibliotecavirtual.models.Livro;
+import com.sistema.projetobibliotecavirtual.services.LogService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,9 +35,7 @@ public class DevolucaoController extends TrocarTelasController {
     // ATUALIZA OS DADOS DA TABELA AO ENTRAR NA TELA
     @FXML
     private void initialize() {
-
         carregarTabelaEmprestimos();
-
         colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colunaAluno.setCellValueFactory(new PropertyValueFactory<>("aluno"));
         colunaLivro.setCellValueFactory(new PropertyValueFactory<>("livro"));
@@ -94,6 +93,8 @@ public class DevolucaoController extends TrocarTelasController {
         Livro livroDevolvido = emprestimoSelecionado.getLivro();
         Livro.getListaLivros().add(livroDevolvido);
         alerta.setText("Devolução realizada com sucesso!");
+        Emprestimo.salvarListaEmprestimoAtivos("emprestimosAtivos.ser");
+        Livro.salvarListaLivros("livros.ser");
         carregarTabelaEmprestimos();
     }
 }
