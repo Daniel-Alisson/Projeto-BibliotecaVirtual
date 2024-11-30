@@ -5,15 +5,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="769.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.LivroController">
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.LivroController">
    <children>
-      <TextField fx:id="campoId" layoutX="148.0" layoutY="132.0" promptText="campoId" />
-      <TextField fx:id="campoTitulo" layoutX="148.0" layoutY="212.0" promptText="titulo" />
-      <TextField fx:id="campoAutor" layoutX="149.0" layoutY="278.0" promptText="autor" />
-      <TextField fx:id="campoEditora" layoutX="150.0" layoutY="360.0" promptText="campoEditora" />
-      <TextField fx:id="campoEstoque" layoutX="151.0" layoutY="427.0" promptText="estoque" />
-      <Button layoutX="402.0" layoutY="278.0" mnemonicParsing="false" onAction="#cadastrarLivro" text="CADASTRAR" />
-      <TextField fx:id="campoGenero" layoutX="369.0" layoutY="132.0" promptText="estoque" />
-      <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="363.0" prefHeight="18.0" prefWidth="482.0" text="Label" />
+      <TextField fx:id="campoId" layoutX="568.0" layoutY="230.0" promptText="campoId" />
+      <TextField fx:id="campoTitulo" layoutX="568.0" layoutY="282.0" promptText="titulo" />
+      <TextField fx:id="campoAutor" layoutX="567.0" layoutY="336.0" promptText="autor" />
+      <TextField fx:id="campoEditora" layoutX="567.0" layoutY="388.0" promptText="campoEditora" />
+      <TextField fx:id="campoEstoque" layoutX="817.0" layoutY="388.0" promptText="estoque" />
+      <Button layoutX="727.0" layoutY="475.0" mnemonicParsing="false" onAction="#cadastrarLivro" text="CADASTRAR" />
+      <TextField fx:id="campoGenero" layoutX="816.0" layoutY="282.0" promptText="genero" />
+      <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="527.0" layoutY="568.0" prefHeight="18.0" prefWidth="482.0" text="Label" />
+      <Button layoutX="816.0" layoutY="335.0" mnemonicParsing="false" onAction="#selecionarCapa" prefHeight="26.0" prefWidth="150.0" text="Escolher Imagem" />
+      <Button onAction="#sairSistema" layoutX="1420.0" layoutY="33.0" mnemonicParsing="false" text="Sair" />
+      <Button onAction="#mudarTelaEmprestimo" layoutX="1309.0" layoutY="33.0" mnemonicParsing="false" text="Emprestimos" />
+      <Button onAction="#mudarTelaAluno" layoutX="1230.0" layoutY="33.0" mnemonicParsing="false" text="Alunos" />
+      <Button onAction="#mudarTelaLivrosDisponiveis" layoutX="1146.0" layoutY="33.0" mnemonicParsing="false" text="Menu" />
    </children>
 </AnchorPane>

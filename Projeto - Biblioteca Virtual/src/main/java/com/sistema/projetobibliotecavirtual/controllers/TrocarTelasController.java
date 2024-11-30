@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+// METODO PARA TROCAR DE TELA
 public class TrocarTelasController {
     @FXML
     public void mudarTelaCadastro(ActionEvent event) {
@@ -68,9 +69,9 @@ public class TrocarTelasController {
     }
 
     @FXML
-    public void mudarTelaMenu(ActionEvent event) {
+    public void mudarTelaLivrosDisponiveis(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/testeMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/telaLivrosDisponiveis.fxml"));
             Parent newScreenRoot = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -84,7 +85,21 @@ public class TrocarTelasController {
     @FXML
     public void mudarTelaEmprestimo(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/testeEmprestimo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/telaEmprestimo.fxml"));
+            Parent newScreenRoot = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newScreenRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void mudarTelaDevolucao(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/telaDevolucao.fxml"));
             Parent newScreenRoot = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

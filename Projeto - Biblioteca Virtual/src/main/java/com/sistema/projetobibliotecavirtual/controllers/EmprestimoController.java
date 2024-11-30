@@ -1,94 +1,122 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
+import com.sistema.projetobibliotecavirtual.models.Aluno;
+import com.sistema.projetobibliotecavirtual.models.Emprestimo;
 import com.sistema.projetobibliotecavirtual.models.Livro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import java.time.LocalDate;
 
-public class EmprestimoController {
+public class EmprestimoController extends TrocarTelasController {
     @FXML
-    private TextField campoBuscaLivro;
+    private ComboBox<Aluno> comboAlunos;
     @FXML
-    private Button botaoBuscar, botaoRealizarEmprestimo;
+    private TextField campoIdLivro;
     @FXML
-    private Label textoTitulo, textoAutor, textoDisponibilidade, textoDataEmprestimo;
+    private DatePicker campoDataEmprestimo;
     @FXML
-    private ComboBox<String> comboAluno;
+    private DatePicker campoDataDevolucao;
     @FXML
-    private DatePicker dataDevolucao1;
+    private ImageView imagemCapa;
+    @FXML
+    private Label tituloLivro;
+    @FXML
+    private Label alerta;
 
-    private String livroSelecionado;
-    private ObservableList<Livro> listaLivros = FXCollections.observableArrayList();
+    private Livro livroSelecionado;
 
+    // INICIALIZAR A LISTA DE ALUNOS NA COMBOBOX
     @FXML
-    private ImageView imgLivro;
-
-    @FXML
-    public void initialize() {
-        textoDataEmprestimo.setText(LocalDate.now().toString());
-        dataDevolucao1.setDayCellFactory(picker -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                setDisable(empty || date.isBefore(LocalDate.now()));
-            }
-        });
-
-        comboAluno.getItems().addAll("Aluno 1", "Aluno 2", "Aluno 3");
-        comboAluno.setPromptText("Selecione um aluno");
-        listaLivros.addAll(
-                new Livro(1, "teste1", "PVT LIDER", "true", 1, "GENERO 1"),
-                new Livro(2, "1984", "PJ", "", 2, "GENERO 2"),
-                new Livro(3, "Teste3", "TAMECA", "true", 3, "GENERO 3"));
+    private void initialize() {
+        ObservableList<Aluno> alunos = FXCollections.observableArrayList(Aluno.getListaAlunos());
+        comboAlunos.setItems(alunos);
     }
 
-    /*
+    // METODO PARA BUSCAR LIVROS POR ID PARA CARREGAR IMAGEM
     @FXML
     private void buscarLivro() {
-        String busca = campoBuscaLivro.getText();
-        for (Livro livro : listaLivros) {
-            if (livro.getTitulo().equalsIgnoreCase(busca) || livro.getId().equals(busca)) {
-                livroSelecionado = livro.getTitulo();
-                textoTitulo.setText(livro.getTitulo());
-                textoAutor.setText(livro.getAutor());
-                textoDisponibilidade.setText(livro.isDisponivel() ? "Disponível" : "Indisponível");
-                imgLivro.setImage(null); // Placeholder caso imagens sejam adicionadas
-                return;
-            }
+        String idLivro = campoIdLivro.getText().trim();
+        if(idLivro.isEmpty()) {
+            alerta.setText("Por favor, insira um ID válido.");
+            return;
         }
-        textoTitulo.setText("Livro não encontrado");
-        textoAutor.setText("");
-        textoDisponibilidade.setText("");
-        imgLivro.setImage(null);
+
+        livroSelecionado = buscarLivroPorId(idLivro);
+        if(livroSelecionado != null) {
+            tituloLivro.setText(livroSelecionado.getTitulo());
+            imagemCapa.setImage(new Image("file:///" + livroSelecionado.getCapa()));
+            alerta.setText("Livro encontrado. Agora, selecione o aluno.");
+        } else {
+            alerta.setText("Livro não encontrado.");
+        }
     }
 
-     */
-
+    // METODO PARA REALIZAR EMPRESTIMO
     @FXML
-    private void confirmarEmprestimo() {
-        if (livroSelecionado == null || comboAluno.getValue() == null || dataDevolucao1.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Campos incompletos");
-            alert.setContentText("Preencha todos os campos antes de confirmar o empréstimo.");
-            alert.showAndWait();
-        } else {
-            String aluno = comboAluno.getValue();
-            LocalDate dataEmprestimo = LocalDate.now();
-            LocalDate dataDevolucao = dataDevolucao1.getValue();
+    private void realizarEmprestimo() {
+        try {
+            if(livroSelecionado == null) {
+                alerta.setText("Selecione um livro antes de realizar o empréstimo.");
+                return;
+            }
 
-            System.out.println("Empréstimo realizado com sucesso!");
-            System.out.println("Livro: " + livroSelecionado);
-            System.out.println("Aluno: " + aluno);
-            System.out.println("Data de Empréstimo: " + dataEmprestimo);
-            System.out.println("Data de Devolução: " + dataDevolucao);
+            Aluno alunoSelecionado = comboAlunos.getValue();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Sucesso");
-            alert.setContentText("O empréstimo foi registrado com sucesso.");
-            alert.showAndWait();
+            if(alunoSelecionado == null) {
+                alerta.setText("Selecione um aluno.");
+                return;
+            }
+
+            LocalDate dataEmprestimo = campoDataEmprestimo.getValue();
+            LocalDate dataDevolucao = campoDataDevolucao.getValue();
+
+            if(dataEmprestimo == null || dataDevolucao == null) {
+                alerta.setText("Preencha as datas de empréstimo e devolução.");
+                return;
+            }
+
+            Emprestimo emprestimo = new Emprestimo(gerarCodigoEmprestimo(), alunoSelecionado, livroSelecionado, dataEmprestimo, dataDevolucao);
+            Emprestimo.getEmprestimosAtivos().add(emprestimo);
+            Livro.getListaLivros().remove(livroSelecionado);
+            alerta.setText("Empréstimo realizado com sucesso!");
+            limparCampos();
+        } catch (Exception e) {
+            alerta.setText("Erro ao realizar o empréstimo.");
         }
+    }
+
+    // METODO PARA BUSCAR LIVRO POR ID PADRAO
+    private Livro buscarLivroPorId(String id) {
+        for(Livro livro : Livro.getListaLivros()) {
+            if(String.valueOf(livro.getId()).equals(id)) {
+                return livro;
+            }
+        }
+        return null;
+    }
+
+    // GERAR CODIGO SIMPLES
+    private int gerarCodigoEmprestimo() {
+        return Emprestimo.getEmprestimosAtivos().size() + 1;
+    }
+
+    // METODO PARA LIMPAR CAMPOS
+    @FXML
+    private void limparCampos() {
+        comboAlunos.getSelectionModel().clearSelection();
+        campoIdLivro.clear();
+        campoDataEmprestimo.setValue(null);
+        campoDataDevolucao.setValue(null);
+        imagemCapa.setImage(null);
+        tituloLivro.setText("");
+        alerta.setText("");
     }
 }

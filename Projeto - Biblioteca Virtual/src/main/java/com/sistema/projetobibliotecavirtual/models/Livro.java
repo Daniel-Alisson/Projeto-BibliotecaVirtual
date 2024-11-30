@@ -10,17 +10,27 @@ public class Livro {
     private String editora;
     private int estoque;
     private String genero;
+    private String capa;
 
     // LISTA DE LIVROS
     private static List<Livro> listaLivros = new ArrayList<>();
 
-    public Livro(int id, String titulo, String autor, String editora, int estoque, String genero) {
+    public Livro(int id, String titulo, String autor, String editora, int estoque, String genero, String capa) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
         this.estoque = estoque;
         this.genero = genero;
+        this.capa = capa;
+    }
+
+    public String getCapa() {
+        return capa;
+    }
+
+    public void setCapa(String capa) {
+        this.capa = capa;
     }
 
     public int getId() {
@@ -94,13 +104,6 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro{" +
-                "autor='" + autor + '\'' +
-                ", id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", editora='" + editora + '\'' +
-                ", estoque=" + estoque +
-                ", genero='" + genero + '\'' +
-                '}';
+        return titulo;
     }
 }

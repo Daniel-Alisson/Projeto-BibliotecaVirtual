@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane maxHeight="815.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.ListaController">
+   <children>
+      <TextField fx:id="campoBusca" layoutX="708.0" layoutY="99.0" promptText="Procure pelo id" />
+      <Button layoutX="916.0" layoutY="99.0" mnemonicParsing="false" onAction="#buscarLivro" text="Buscar" />
+       <ScrollPane layoutX="109.0" layoutY="167.0" prefHeight="593.0" prefWidth="1310.0">
+           <content>
+               <GridPane fx:id="gridLivros" hgap="20.0" style="-fx-padding: 10;" vgap="20.0">
+                   <!-- AQ VAI APARECER AS LISTA DE LIVROS - NÃO BOTA NADA AQ -->
+               </GridPane>
+           </content>
+       </ScrollPane>
+      <Button layoutX="1148.0" layoutY="21.0" mnemonicParsing="false" onAction="#mudarTelaLivro" text="Livros" />
+      <Button layoutX="1222.0" layoutY="21.0" mnemonicParsing="false" onAction="#mudarTelaAluno" text="Alunos" />
+      <Button onAction="#sairSistema" layoutX="1419.0" layoutY="21.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Sair" />
+      <Button onAction="#mudarTelaEmprestimo" layoutX="1301.0" layoutY="21.0" mnemonicParsing="false" text="Emprestimo" />
+   </children>
+</AnchorPane>

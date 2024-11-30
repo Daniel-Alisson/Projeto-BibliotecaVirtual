@@ -1,8 +1,6 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import java.io.Serializable;
-
-public class Pessoa implements Serializable {
+public class Pessoa {
     private String nome;
     private String cpf;
     private String email;

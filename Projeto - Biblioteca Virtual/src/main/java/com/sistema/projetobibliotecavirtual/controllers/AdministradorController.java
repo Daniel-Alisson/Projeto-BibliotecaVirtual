@@ -44,7 +44,6 @@ public class AdministradorController extends TrocarTelasController {
             case 0:
                 alerta.setText("Administrador cadastrado com sucesso!");
                 limparCampos();
-                //mudarTelalogin(event);
                 break;
             case 1:
                 alerta.setText("Já existe um administrador cadastrado com esse CPF");
@@ -70,7 +69,7 @@ public class AdministradorController extends TrocarTelasController {
 
         if(admin != null) {
             alerta.setText("Login realizado com sucesso!");
-            mudarTelaAluno(event);
+            mudarTelaLivrosDisponiveis(event);
         } else {
             alerta.setText("Email ou senha incorretos!");
         }

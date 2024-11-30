@@ -2,10 +2,11 @@ package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Livro;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 public class LivroController extends TrocarTelasController {
     // CAMPOS DO CADASTRO
@@ -14,6 +15,22 @@ public class LivroController extends TrocarTelasController {
     // EXIBE A MENSAGEM DE ALERTA, OU DE DIVERGENCIA DOS DADOS CADASTRADOS
     @FXML
     Label alerta;
+    private String capa;
+
+    // METODO PARA ESCOLHER A IMAGEM DA CAPA DO LIVRO
+    @FXML
+    private void selecionarCapa() {
+        FileChooser file = new FileChooser();
+        file.setTitle("Capa do Livro");
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagens", "*.jpg", "*.jpeg", "*.png"));
+        File imagemEscolhida = file.showOpenDialog(new Stage());
+        if(imagemEscolhida != null) {
+            capa = imagemEscolhida.getAbsolutePath();
+            alerta.setText("Capa selecionada");
+        } else {
+            alerta.setText("Nenhuma capa selecionada");
+        }
+    }
 
     // METODO PARA CADASTRAR LIVROS
     @FXML
@@ -31,7 +48,7 @@ public class LivroController extends TrocarTelasController {
                 return;
             }
 
-            Livro livroNovo = new Livro(id, titulo, autor, editora, estoque, genero);
+            Livro livroNovo = new Livro(id, titulo, autor, editora, estoque, genero, capa);
 
             int op = livroNovo.adicionarLivro(livroNovo);
 
@@ -60,5 +77,6 @@ public class LivroController extends TrocarTelasController {
         campoAutor.clear();
         campoEditora.clear();
         campoEstoque.clear();
+        capa = null;
     }
 }

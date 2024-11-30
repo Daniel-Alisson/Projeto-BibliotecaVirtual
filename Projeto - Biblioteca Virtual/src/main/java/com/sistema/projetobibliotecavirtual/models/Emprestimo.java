@@ -11,6 +11,7 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
 
+    // LISTA DE EMPRESTIMOS ATIVOS
     private static List<Emprestimo> emprestimosAtivos = new ArrayList<>();
 
     public Emprestimo(int codigo, Aluno aluno, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
@@ -19,6 +20,10 @@ public class Emprestimo {
         this.livro = livro;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
+    }
+
+    public static List<Emprestimo> getEmprestimosAtivos() {
+        return emprestimosAtivos;
     }
 
     public int getCodigo() {
@@ -37,12 +42,12 @@ public class Emprestimo {
         this.aluno = aluno;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public LocalDate getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public LocalDate getDataEmprestimo() {
@@ -53,38 +58,16 @@ public class Emprestimo {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
+    public static void setEmprestimosAtivos(List<Emprestimo> emprestimosAtivos) {
+        Emprestimo.emprestimosAtivos = emprestimosAtivos;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public static boolean registrarDevolucao(int codigo) {
-        Emprestimo emprestimoEncontrado = null;
-
-        for (Emprestimo emprestimo : emprestimosAtivos) {
-            if (emprestimo.getCodigo() == codigo) {
-                emprestimoEncontrado = emprestimo;
-                break;
-            }
-        }
-
-        if (emprestimoEncontrado != null) {
-            Livro livro = emprestimoEncontrado.getLivro();
-            livro.setEstoque(livro.getEstoque() + 1);
-            emprestimosAtivos.remove(emprestimoEncontrado);
-            System.out.println("Devolução registrada com sucesso.");
-            return true;
-        }
-
-        System.out.println("Empréstimo não encontrado.");
-        return false;
-    }
-
-    public static List<Emprestimo> getEmprestimosAtivos() {
-        return emprestimosAtivos;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
     @Override

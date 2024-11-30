@@ -1,104 +1,88 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Livro;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
-public class ListaController {
+import java.io.File;
+import java.util.List;
 
+public class ListaController extends TrocarTelasController  {
     @FXML
     private TextField campoBusca;
     @FXML
-    private TableView<Livro> tabelaLivros;
-    @FXML
-    private TableColumn<Livro, String> colunaId;
-    @FXML
-    private TableColumn<Livro, String> colunaTitulo;
-    @FXML
-    private TableColumn<Livro, String> colunaAutor;
-    @FXML
-    private TableColumn<Livro, String> colunaDisponibilidade;
-    @FXML
-    private Pagination paginacao;
-    @FXML
-    private Button botaoDetalhes;
-
-
-    private ObservableList<Livro> listaLivros = FXCollections.observableArrayList();
-    private static final int ITENS_POR_PAGINA = 10;
+    private GridPane gridLivros;
 
     @FXML
     public void initialize() {
-        // TESTES
-        listaLivros.addAll(
-                new Livro(1, "PJ", "TESTE1", "true", 1, "GENERO 1"),
-                new Livro(2, "PVT LIDER", "TESTE2", "true", 2, "GENERO 2"),
-                new Livro(3, "TAMECA", "TESTE3", "true", 3, "GENERO 3"));
-        colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colunaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        colunaAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        /*colunaDisponibilidade.setCellValueFactory(livro ->
-                new SimpleStringProperty(livro.getValue().isDisponivel() ? "Disponível" : "Indisponível")
-        );
-
-         */
-        configurarPaginacao();
-        configurarBusca();
+        listarLivros(Livro.getListaLivros());
     }
 
-    private void configurarPaginacao() {
-        int totalPaginas = (int) Math.ceil((double) listaLivros.size() / ITENS_POR_PAGINA);
-        paginacao.setPageCount(totalPaginas);
+    // METODO PARA LISTAR LIVROS NO GRID
+    private void listarLivros(List<Livro> livros) {
+        gridLivros.getChildren().clear();
+        int coluna = 0;
+        int linha = 0;
 
-        paginacao.setPageFactory(this::criarPagina);
-    }
+        for (Livro livro : livros) {
+            ImageView imagemCapa = new ImageView();
+            File arquivoCapa = new File(livro.getCapa());
+            if (arquivoCapa.exists()) {
+                imagemCapa.setImage(new Image(arquivoCapa.toURI().toString()));
+            } else {
+                imagemCapa.setImage(new Image("default_capa.png")); // Imagem padrão
+            }
+            imagemCapa.setFitWidth(150);
+            imagemCapa.setFitHeight(200);
 
-    private TableView<Livro> criarPagina(int pagina) {
-        int inicio = pagina * ITENS_POR_PAGINA;
-        int fim = Math.min(inicio + ITENS_POR_PAGINA, listaLivros.size());
-        tabelaLivros.setItems(FXCollections.observableArrayList(listaLivros.subList(inicio, fim)));
-        return tabelaLivros;
-    }
+            //
+            Label titulo = new Label(livro.getTitulo());
+            titulo.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+            titulo.setWrapText(true);
 
-    private void configurarBusca() {
-        FilteredList<Livro> livrosFiltrados = new FilteredList<>(listaLivros, livro -> true);
-
-        campoBusca.textProperty().addListener((observable, oldValue, newValue) -> {
-            livrosFiltrados.setPredicate(livro -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String buscaMinuscula = newValue.toLowerCase();
-                return livro.getTitulo().toLowerCase().contains(buscaMinuscula) ||
-                        livro.getAutor().toLowerCase().contains(buscaMinuscula);
+            Button botaoSelecionar = new Button("Selecionar");
+            botaoSelecionar.setOnAction(event -> {
+                System.out.println("Livro selecionado: " + livro.getTitulo());
             });
 
-            configurarPaginacao();
-        });
-    }
-    /*
-    @FXML
-    private void verDetalhesLivro() {
-        Livro livroSelecionado = tabelaLivros.getSelectionModel().getSelectedItem();
-        if (livroSelecionado != null) {
-            Alert detalhes = new Alert(Alert.AlertType.INFORMATION);
-            detalhes.setHeaderText("Detalhes do Livro");
-            detalhes.setContentText("Título: " + livroSelecionado.getTitulo() +
-                    "\nAutor: " + livroSelecionado.getAutor() +
-                    "\nDisponível: " + (livroSelecionado.isDisponivel() ? "Sim" : "Não"));
-            detalhes.showAndWait();
-        } else {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setHeaderText("Nenhum livro selecionado");
-            alerta.setContentText("Por favor, selecione um livro antes de clicar no botão.");
-            alerta.showAndWait();
+            VBox itemLivro = new VBox(10, imagemCapa, titulo, botaoSelecionar);
+            itemLivro.setStyle("-fx-alignment: center;");
+            itemLivro.setSpacing(15);
+
+            gridLivros.add(itemLivro, coluna, linha);
+
+            coluna++;
+            if (coluna == 5) { // VC PODE ALTERAR A QUANTIDADE DE LIVROS POR AQ, NESSE CASO SERÃO 5 LIVROS POR LINHA
+                coluna = 0;
+                linha++;
+            }
         }
     }
 
-     */
+    // METODO PARA BUSCAR LIVROS POR ID
+    @FXML
+    private void buscarLivro() {
+        String idTexto = campoBusca.getText().trim();
+        if(idTexto.isEmpty()) {
+            listarLivros(Livro.getListaLivros());
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idTexto);
+            List<Livro> livrosFiltrados = Livro.getListaLivros().stream().filter(livro -> livro.getId() == id).toList();
+            if (livrosFiltrados.isEmpty()) {
+                System.out.println("Nenhum livro encontrado com o ID: " + id);
+            }
+            listarLivros(livrosFiltrados);
+        } catch (NumberFormatException e) {
+            System.out.println("Por favor, insira um ID válido.");
+        }
+    }
 }

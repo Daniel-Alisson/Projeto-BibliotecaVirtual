@@ -1,13 +1,9 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
-
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Administrador extends Pessoa implements Serializable {
+public class Administrador extends Pessoa {
     private String senha;
 
     // LISTA PARA GUARDAR ADMINS
@@ -56,27 +52,5 @@ public class Administrador extends Pessoa implements Serializable {
             }
         }
         return null;
-    }
-
-    public static void salvarAdministradores() {
-        try {
-            SerializacaoService.salvarObjeto(listaAdministradores, "administradores.txt");
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void carregarAdministradores() {
-        try {
-            // testes
-            Administrador admin = new Administrador("Daniel", "00000000000", "daniel@gmail.com", "1");
-            listaAdministradores.add(admin);
-            List<Administrador> carregarAdmins = (List<Administrador>) SerializacaoService.carregarObjeto("administradores.txt");
-            if(carregarAdmins != null) {
-                listaAdministradores = carregarAdmins;
-            }
-        } catch(IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

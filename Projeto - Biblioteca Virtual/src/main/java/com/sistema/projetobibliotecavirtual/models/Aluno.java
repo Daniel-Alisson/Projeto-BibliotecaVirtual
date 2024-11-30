@@ -1,8 +1,5 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,22 +70,8 @@ public class Aluno {
         return 0;
     }
 
-    public static void salvarAlunos() {
-        try {
-            SerializacaoService.salvarObjeto(listaAlunos, "alunos.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void carregarAlunos() {
-        try {
-            List<Aluno> alunosCarregados = (List<Aluno>) SerializacaoService.carregarObjeto("alunos.txt");
-            if (alunosCarregados != null) {
-                listaAlunos = alunosCarregados;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public String toString() {
+        return nome;
     }
 }
