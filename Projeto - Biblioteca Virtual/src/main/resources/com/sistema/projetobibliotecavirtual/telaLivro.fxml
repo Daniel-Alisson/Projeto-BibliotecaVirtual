@@ -4,21 +4,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.LivroController">
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" style="-fx-background-color: #d1e4ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.LivroController">
    <children>
-      <TextField fx:id="campoId" layoutX="568.0" layoutY="230.0" promptText="campoId" />
-      <TextField fx:id="campoTitulo" layoutX="568.0" layoutY="282.0" promptText="titulo" />
-      <TextField fx:id="campoAutor" layoutX="567.0" layoutY="336.0" promptText="autor" />
-      <TextField fx:id="campoEditora" layoutX="567.0" layoutY="388.0" promptText="campoEditora" />
-      <TextField fx:id="campoEstoque" layoutX="817.0" layoutY="388.0" promptText="estoque" />
-      <Button layoutX="727.0" layoutY="475.0" mnemonicParsing="false" onAction="#cadastrarLivro" text="CADASTRAR" />
-      <TextField fx:id="campoGenero" layoutX="816.0" layoutY="282.0" promptText="genero" />
-      <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="527.0" layoutY="568.0" prefHeight="18.0" prefWidth="482.0" text="Label" />
-      <Button layoutX="816.0" layoutY="335.0" mnemonicParsing="false" onAction="#selecionarCapa" prefHeight="26.0" prefWidth="150.0" text="Escolher Imagem" />
-      <Button onAction="#sairSistema" layoutX="1420.0" layoutY="33.0" mnemonicParsing="false" text="Sair" />
-      <Button onAction="#mudarTelaEmprestimo" layoutX="1309.0" layoutY="33.0" mnemonicParsing="false" text="Emprestimos" />
-      <Button onAction="#mudarTelaAluno" layoutX="1230.0" layoutY="33.0" mnemonicParsing="false" text="Alunos" />
-      <Button onAction="#mudarTelaLivrosDisponiveis" layoutX="1146.0" layoutY="33.0" mnemonicParsing="false" text="Menu" />
+      <HBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="1536.0" style="-fx-background-color: #1A1A6B; -fx-padding: 10;">
+         <children>
+            <Label text="Biblioteca Teotonio Vilela" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Region prefWidth="700.0" />
+            <Button onAction="#mudarTelaLivrosDisponiveis" text="Livros" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" />
+            <Button onAction="#mudarTelaAluno" text="Alunos" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" />
+            <Button onAction="#mudarTelaEmprestimo" text="Empréstimos" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" />
+            <Button onAction="#sairSistema" text="Sair" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" />
+         </children>
+      </HBox>
+      <VBox layoutX="368.0" layoutY="150.0" prefHeight="550.0" prefWidth="800.0" spacing="20" style="-fx-background-color: #1A1A6B; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0);">
+         <children>
+            <Label text="Cadastro de Livro" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" />
+            <VBox spacing="10">
+               <TextField fx:id="campoId" promptText="ID do Livro" />
+               <TextField fx:id="campoTitulo" promptText="Título do Livro" />
+               <TextField fx:id="campoAutor" promptText="Autor" />
+               <TextField fx:id="campoEditora" promptText="Editora" />
+               <HBox spacing="10">
+                  <TextField fx:id="campoEstoque" promptText="Estoque" />
+                  <TextField fx:id="campoGenero" promptText="Gênero" />
+               </HBox>
+            </VBox>
+            <VBox spacing="10">
+               <Button fx:id="btnEscolherImagem" onAction="#selecionarCapa" text="Escolher Imagem" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-cursor: hand;" />
+               <Button fx:id="btnCadastrar" onAction="#cadastrarLivro" text="Cadastrar Livro" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-cursor: hand;" />
+            </VBox>
+            <Label fx:id="alerta" text="Mensagem de Alerta" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: center;" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

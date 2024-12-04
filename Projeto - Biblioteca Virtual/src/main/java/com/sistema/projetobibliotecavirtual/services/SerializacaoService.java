@@ -12,7 +12,6 @@ public class SerializacaoService {
         }
     }
 
-    // Método para carregar um objeto de um arquivo
     public static Object carregarObjeto(String caminhoArquivo) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(caminhoArquivo))) {
             Object objeto = ois.readObject();

@@ -7,26 +7,75 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.EmprestimoController">
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" style="-fx-background-color: #d1e4ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.EmprestimoController">
    <children>
-      <ComboBox fx:id="comboAlunos" layoutX="472.0" layoutY="469.0" prefWidth="200.0" />
-      <TextField fx:id="campoIdLivro" layoutX="472.0" layoutY="169.0" promptText="ID do Livro" />
-      <Button layoutX="692.0" layoutY="169.0" onAction="#buscarLivro" text="Buscar Livro" />
-      <ImageView fx:id="imagemCapa" fitHeight="200.0" fitWidth="150.0" layoutX="472.0" layoutY="209.0" />
-      <Label fx:id="tituloLivro" layoutX="472.0" layoutY="429.0" />
+      <!-- Cabeçalho de Navegação -->
+      <HBox alignment="CENTER" layoutX="0.0" layoutY="0.0" prefHeight="60.0" prefWidth="1536.0" style="-fx-background-color: #001A66; -fx-padding: 10;">
+         <children>
+            <!-- Título à Esquerda -->
+            <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Biblioteca Teotonio Vilela" />
 
-      <DatePicker fx:id="campoDataEmprestimo" layoutX="692.0" layoutY="528.0" />
-      <DatePicker fx:id="campoDataDevolucao" layoutX="692.0" layoutY="469.0" />
+            <!-- Espaçamento Flexível -->
+            <Region prefWidth="700.0" />
 
-      <Button layoutX="940.0" layoutY="554.0" onAction="#realizarEmprestimo" text="Realizar Empréstimo" />
+            <!-- Botões de Navegação -->
+            <Button onAction="#mudarTelaLivrosDisponiveis" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Menu" />
+            <Button onAction="#mudarTelaAluno" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Alunos" />
+            <Button onAction="#mudarTelaDevolucao" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Devolução" />
+            <Button onAction="#sairSistema" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Sair" />
+         </children>
+      </HBox>
 
-      <Label fx:id="alerta" layoutX="680.0" layoutY="629.0" />
-      <Label layoutX="472.0" layoutY="448.0" text="Lista de alunos" />
-      <Button onAction="#sairSistema" layoutX="1407.0" layoutY="36.0" mnemonicParsing="false" text="Sair" />
-      <Button onAction="#mudarTelaDevolucao" layoutX="1305.0" layoutY="36.0" mnemonicParsing="false" text="Devolução" />
-      <Button onAction="#mudarTelaAluno" layoutX="1228.0" layoutY="36.0" mnemonicParsing="false" text="Alunos" />
-      <Button onAction="#mudarTelaLivro" layoutX="1153.0" layoutY="36.0" mnemonicParsing="false" text="Livros" />
-      <Button onAction="#mudarTelaLivrosDisponiveis" layoutX="1081.0" layoutY="36.0" mnemonicParsing="false" text="Menu" />
+      <!-- Conteúdo Principal -->
+      <VBox layoutX="368.0" layoutY="150.0" prefHeight="550.0" prefWidth="800.0" spacing="20" style="-fx-background-color: #1A1A6B; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0);">
+         <children>
+            <!-- Título -->
+            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Empréstimo de Livro" />
+
+            <!-- Informações do Livro -->
+            <HBox spacing="20">
+               <ImageView fx:id="imagemCapa" fitHeight="200.0" fitWidth="150.0" style="-fx-background-color: white;" />
+               <VBox spacing="10">
+                  <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Título do Livro" />
+                  <Label fx:id="tituloLivro" alignment="CENTER" style="-fx-text-fill: white; -fx-font-size: 14px;" textFill="WHITE" />
+                  <Label fx:id="sinopseLivro" style="-fx-text-fill: white; -fx-font-size: 14px;" text="" wrapText="true" />
+               </VBox>
+            </HBox>
+
+            <!-- Formulário -->
+            <VBox spacing="10">
+               <ComboBox fx:id="comboAlunos" prefWidth="300.0" promptText="Selecione o aluno" />
+               <HBox spacing="10">
+                  <VBox spacing="5">
+                     <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Data de Empréstimo:" />
+                     <DatePicker fx:id="campoDataEmprestimo" />
+                  </VBox>
+                  <VBox spacing="5">
+                     <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Data de Devolução:" />
+                     <DatePicker fx:id="campoDataDevolucao" />
+                  </VBox>
+                  <VBox prefHeight="50.0" prefWidth="174.0">
+                     <children>
+                        <TextField fx:id="campoIdLivro" promptText="Selecione o id" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#buscarLivro" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 10px; -fx-cursor: hand;" text="Selecionar" />
+               </HBox>
+            </VBox>
+
+            <!-- Botão -->
+            <Button fx:id="btnEmprestar" onAction="#realizarEmprestimo" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="EMPRESTAR" />
+            <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="387.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
