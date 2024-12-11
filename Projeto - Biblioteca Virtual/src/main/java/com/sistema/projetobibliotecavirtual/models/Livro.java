@@ -26,7 +26,7 @@ public class Livro implements Serializable {
         this.editora = editora;
         this.estoque = estoque;
         this.genero = genero;
-        this.capa = capa;
+        this.capa = (capa != null) ? capa : "";
     }
 
     public String getCapa() {

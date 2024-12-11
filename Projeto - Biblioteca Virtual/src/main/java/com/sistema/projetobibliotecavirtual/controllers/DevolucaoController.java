@@ -75,8 +75,9 @@ public class DevolucaoController extends TrocarTelasController {
         if(emprestimoEncontrado != null) {
             tabelaEmprestimos.getItems().clear();
             tabelaEmprestimos.getItems().add(emprestimoEncontrado);
+            alerta.setText("Empréstimo encontrado");
         } else {
-            alerta.setText("Empréstimo não encontrado.");
+            alerta.setText("Empréstimo não encontrado");
         }
     }
 

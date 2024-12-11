@@ -54,9 +54,9 @@ public class EmprestimoController extends TrocarTelasController {
         if(livroSelecionado != null) {
             tituloLivro.setText(livroSelecionado.getTitulo());
             imagemCapa.setImage(new Image("file:///" + livroSelecionado.getCapa()));
-            alerta.setText("Livro encontrado. Agora, selecione o aluno.");
+            alerta.setText("Livro encontrado");
         } else {
-            alerta.setText("Livro não encontrado.");
+            alerta.setText("Livro não encontrado");
         }
     }
 
