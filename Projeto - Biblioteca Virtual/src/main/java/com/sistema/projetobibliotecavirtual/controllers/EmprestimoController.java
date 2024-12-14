@@ -37,7 +37,7 @@ public class EmprestimoController extends TrocarTelasController {
     // INICIALIZAR A LISTA DE ALUNOS NA COMBOBOX
     @FXML
     private void initialize() {
-        ObservableList<Aluno> alunos = FXCollections.observableArrayList(Aluno.getListaAlunos());
+        ObservableList<Aluno> alunos = FXCollections.observableArrayList(AlunoController.getListaAlunos());
         comboAlunos.setItems(alunos);
     }
 

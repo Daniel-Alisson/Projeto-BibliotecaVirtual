@@ -13,22 +13,11 @@ public class Aluno implements Serializable {
     private String nome;
     private String telefone;
 
-    // LISTA DE ALUNOS
-    private static List<Aluno> listaAlunos = new ArrayList<>();
-
     public Aluno(String nome, String turma, String matricula, String telefone) {
         this.matricula = matricula;
         this.turma = turma;
         this.nome = nome;
         this.telefone = telefone;
-    }
-
-    public static List<Aluno> getListaAlunos() {
-        return listaAlunos;
-    }
-
-    public static void setListaAlunos(List<Aluno> listaAlunos) {
-        Aluno.listaAlunos = listaAlunos;
     }
 
     public String getMatricula() {
@@ -61,29 +50,6 @@ public class Aluno implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    // METODO PARA CADASTRAR ALUNOS
-    public int cadastrarAluno(Aluno aluno) {
-        for(Aluno alunoNovo : listaAlunos) {
-            if(alunoNovo.getMatricula().equals(aluno.getMatricula())) {
-                return 1;
-            }
-        }
-        listaAlunos.add(aluno);
-        salvarListaAlunos("alunos.ser");
-        return 0;
-    }
-
-    public static void salvarListaAlunos(String caminhoArquivo) {
-        SerializacaoService.salvarObjeto(listaAlunos, caminhoArquivo);
-    }
-
-    public static void carregarListaAlunos(String caminhoArquivo) {
-        List<Aluno> listaCarregada = (List<Aluno>) SerializacaoService.carregarObjeto(caminhoArquivo);
-        if (listaCarregada != null) {
-            listaAlunos = listaCarregada;
-        }
     }
 
     @Override

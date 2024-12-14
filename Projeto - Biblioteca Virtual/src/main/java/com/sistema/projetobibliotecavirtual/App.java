@@ -1,6 +1,7 @@
 package com.sistema.projetobibliotecavirtual;
 
 import com.sistema.projetobibliotecavirtual.controllers.AdministradorController;
+import com.sistema.projetobibliotecavirtual.controllers.AlunoController;
 import com.sistema.projetobibliotecavirtual.models.Administrador;
 import com.sistema.projetobibliotecavirtual.models.Aluno;
 import com.sistema.projetobibliotecavirtual.models.Emprestimo;
@@ -30,7 +31,7 @@ public class App extends Application {
 
     public void carregarDados() {
         AdministradorController.carregarListaAdministradores("administradores.ser");
-        Aluno.carregarListaAlunos("alunos.ser");
+        AlunoController.carregarListaAlunos("alunos.ser");
         Livro.carregarListaLivros("livros.ser");
         Emprestimo.carregarListaEmprestimosAtivos("emprestimosAtivos.ser");
     }

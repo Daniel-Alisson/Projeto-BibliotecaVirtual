@@ -1,6 +1,7 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Administrador;
+import com.sistema.projetobibliotecavirtual.models.Livro;
 import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ public class AdministradorController extends TrocarTelasController {
     @FXML
     TextField campoNome, campoCpf, campoEmail, campoSenha, campoSenhaNovamente;
     @FXML
-    TextField campoNovoNome, campoNovoCpf, campoNovoEmail, campoNovaSenha, campoNovaSenhaNovamente;
+    TextField campoNovoNome, campoNovoCpf, campoNovoEmail, campoNovaSenha, campoNovaSenhaNovamente, campoBuscaCpf;
     // EXIBE A MENSAGEM DE ALERTA, OU DE DIVERGENCIA DOS DADOS
     @FXML
     Label alerta;
@@ -213,6 +214,7 @@ public class AdministradorController extends TrocarTelasController {
         }
     }
 
+    @FXML
     private void listarAdministradores(List<Administrador> administradores) {
         gridAdmins.getChildren().clear();
         int coluna = 0;
@@ -231,7 +233,10 @@ public class AdministradorController extends TrocarTelasController {
             Label cpf = new Label("Cpf: " + administrador.getCpf());
             cpf.setStyle("-fx-font-size: 12px; -fx-text-fill: white; -fx-font-style: italic;");
 
-            VBox itemAdmin = new VBox(5, imagemCapa, nome, cpf);
+            Button remover = new Button("Remover");
+            remover.setStyle("-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-color: #FF3B3B; -fx-cursor:hand");
+            remover.setOnAction(event -> removerAdministrador(administrador));
+            VBox itemAdmin = new VBox(5, imagemCapa, nome, cpf, remover);
             itemAdmin.setStyle("-fx-alignment: center; -fx-background-color: #001A66; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-color: black; -fx-padding: 10;");
             itemAdmin.setSpacing(15);
 
@@ -244,6 +249,35 @@ public class AdministradorController extends TrocarTelasController {
             }
         }
     }
+
+    @FXML
+    private void removerAdministrador(Administrador administrador) {
+        if (logado == administrador) {
+            alerta.setText("Não pode remover o Administrador logado");
+            return;
+        }
+        listaAdministradores.remove(administrador);
+        salvarListaAdministradores("administradores.ser");
+        listarAdministradores(listaAdministradores);
+        alerta.setText("Administrador removido com sucesso!");
+    }
+
+    @FXML
+    private void buscaAdmin() {
+        String cpf = campoBuscaCpf.getText().trim();
+
+        if (cpf.isEmpty()) {
+            listarAdministradores(listaAdministradores);
+            return;
+        }
+
+        List<Administrador> adminsFiltrados = listaAdministradores.stream().filter(admin -> admin.getCpf().equals(cpf)).toList();
+        if (adminsFiltrados.isEmpty()) {
+            System.out.println("Nenhum administrador encontrado com o CPF: " + cpf);
+        }
+        listarAdministradores(adminsFiltrados);
+    }
+
 
     public static void salvarListaAdministradores(String caminhoArquivo) {
         SerializacaoService.salvarObjeto(listaAdministradores, caminhoArquivo);
