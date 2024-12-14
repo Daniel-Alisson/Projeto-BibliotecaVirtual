@@ -45,7 +45,7 @@
             <Button onAction="#menuLivros" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Menu" />
             <Button onAction="#livroCadastro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Livros" />
             <Button onAction="#alunoCadastro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Alunos" />
-            <Button onAction="#mudarTelaDevolucao" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Devolução" />
+            <Button onAction="#devolucao" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Devolução" />
             <ImageView fx:id="iconePerfil" fitHeight="26.0" fitWidth="41.0" onMouseClicked="#telaPerfil" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@../../../imagens/Icone-Perfil.png" />

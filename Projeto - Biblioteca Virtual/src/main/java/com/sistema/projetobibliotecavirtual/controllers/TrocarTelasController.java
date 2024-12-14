@@ -101,7 +101,7 @@ public class TrocarTelasController {
     }
 
     @FXML
-    public void mudarTelaDevolucao(ActionEvent event) {
+    public void devolucao(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/DevolucaoView.fxml"));
             Parent newScreenRoot = loader.load();
@@ -122,7 +122,7 @@ public class TrocarTelasController {
     @FXML
     private void telaPerfil() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/telaPerfil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/PerfilAdminView.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) iconePerfil.getScene().getWindow(); // Obtém a janela atual
