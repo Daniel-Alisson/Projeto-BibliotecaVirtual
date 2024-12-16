@@ -1,7 +1,6 @@
 package com.sistema.projetobibliotecavirtual.controllers;
 
 import com.sistema.projetobibliotecavirtual.models.Administrador;
-import com.sistema.projetobibliotecavirtual.models.Livro;
 import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

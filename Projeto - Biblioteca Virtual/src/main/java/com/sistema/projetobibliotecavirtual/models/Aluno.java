@@ -1,11 +1,6 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import com.sistema.projetobibliotecavirtual.services.LogService;
-import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Aluno implements Serializable {
     private String matricula;

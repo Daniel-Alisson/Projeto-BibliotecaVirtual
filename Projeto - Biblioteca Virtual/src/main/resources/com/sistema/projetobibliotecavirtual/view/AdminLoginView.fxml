@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" stylesheets="@../styles/AdminLogin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AdministradorController">
+   <children>
+      <AnchorPane fx:id="box_login" layoutX="427.0" layoutY="147.0" prefHeight="514.0" prefWidth="681.0">
+         <children>
+            <AnchorPane layoutX="51.0" layoutY="52.0" prefHeight="410.0" prefWidth="580.0">
+               <children>
+                  <Label fx:id="label_campos1" layoutX="15.0" layoutY="95.0" prefHeight="20.0" prefWidth="74.0" text="Email" />
+                  <TextField fx:id="campoEmail" layoutX="15.0" layoutY="115.0" prefHeight="41.0" prefWidth="486.0" promptText="Email">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="label_campos2" layoutX="15.0" layoutY="176.0" prefHeight="20.0" prefWidth="74.0" text="Senha" />
+                  <PasswordField fx:id="campoSenha" layoutX="15.0" layoutY="198.0" prefHeight="50.0" prefWidth="414.0" promptText="Senha">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="botaoLogin" layoutX="15.0" layoutY="290.0" onAction="#loginAdministrador" prefHeight="40.0" prefWidth="130.0" text="ENTRAR" />
+                  <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="376.0" prefHeight="20.0" prefWidth="470.0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="box_titulo" layoutX="223.0" layoutY="-23.0" prefHeight="74.0" prefWidth="134.0" text="Login" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="check_logado" layoutX="16.0" layoutY="257.0" mnemonicParsing="false" text="Manter logado" />
+                  <Button fx:id="botaoSenha" focusTraversable="false" layoutX="393.0" layoutY="252.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="172.0" text="Esqueceu a senha?" />
+                  <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="24.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../imagens/icone_email.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="24.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../imagens/icone_senha.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <HBox fx:id="header_botoes" layoutX="1294.0" prefHeight="60.0" prefWidth="250.0">
+         <children>
+            <Button fx:id="botaoCadastro" focusTraversable="false" onAction="#adminCadastro" prefWidth="100.0" style="-fx-cursor: hand;" text="Cadastro" />
+            <Label fx:id="label" text="|" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoSair" focusTraversable="false" onAction="#sairSistema" text="Sair" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="305.0" prefHeight="60.0" prefWidth="997.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
+         <children>
+            <Region prefHeight="43.0" prefWidth="790.0" />
+         </children>
+      </HBox>
+      <HBox fx:id="header_titulo" alignment="CENTER" prefHeight="60.0" prefWidth="400.0" spacing="10" style="-fx-background-color: #001A66; -fx-padding: 10;">
+         <children>
+            <Label fx:id="titulo" prefHeight="30.0" prefWidth="361.0" text="Biblioteca Teotonio Vilela">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

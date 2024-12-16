@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" style="-fx-background-color: #A8C7FF;;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.DevolucaoController">
+    <children>
+      <AnchorPane layoutX="367.0" layoutY="116.0" prefHeight="654.0" prefWidth="965.0" style="-fx-background-color: #001A66;">
+         <children>
+              <TableView fx:id="tabelaEmprestimos" layoutX="19.0" layoutY="138.0" prefHeight="378.0" prefWidth="926.0">
+                  <columns>
+                      <TableColumn fx:id="colunaCodigo" text="Código" />
+                      <TableColumn fx:id="colunaAluno" prefWidth="200" text="Aluno" />
+                      <TableColumn fx:id="colunaLivro" prefWidth="285.0" text="Livro" />
+                      <TableColumn fx:id="colunaDataEmprestimo" prefWidth="180.0" text="Data Empréstimo" />
+                      <TableColumn fx:id="colunaDataDevolucao" prefWidth="180.0" text="Data Devolução" />
+                  </columns>
+              </TableView>
+              <TextField fx:id="campoBuscaId" alignment="CENTER" layoutX="19.0" layoutY="87.0" prefHeight="40.0" prefWidth="55.0" promptText="ID" />
+              <Button layoutX="98.0" layoutY="87.0" onAction="#buscarEmprestimoPorId" prefWidth="140.0" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5px; -fx-cursor: hand; -fx-pref-height: 40;" text="Buscar" />
+              <Button layoutX="392.0" layoutY="535.0" onAction="#registrarDevolucao" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5px; -fx-cursor: hand; -fx-pref-width: 180; -fx-pref-height: 35;" text="Registrar Devolução" />
+              <Label fx:id="alerta" alignment="CENTER" layoutX="247.0" layoutY="592.0" prefHeight="30.0" prefWidth="470.0" text="" textAlignment="CENTER" textFill="WHITE" />
+            <Label layoutX="19.0" layoutY="26.0" text="Devolução de Livros" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+       <HBox alignment="CENTER" layoutX="305.0" prefHeight="60.0" prefWidth="1234.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
+            <children>
+                <Region prefHeight="200.0" prefWidth="900.0" />
+                <Button onAction="#menuLivros" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Menu" />
+                <Button onAction="#emprestimo" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Emprestimo" />
+                <ImageView fx:id="iconePerfil" fitHeight="26.0" fitWidth="41.0" onMouseClicked="#telaPerfil" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                    <image>
+                        <Image url="@../../../../imagens/Icone-Perfil.png" />
+                    </image>
+                </ImageView>
+                <Button onAction="#sairSistema" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Sair" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="-26.0" layoutY="-4.0" prefHeight="64.0" prefWidth="339.0" spacing="10" style="-fx-background-color: #001A66;">
+            <children>
+                <Button alignment="BOTTOM_LEFT" contentDisplay="CENTER" focusTraversable="false" onAction="#menuLivros" prefHeight="43.0" prefWidth="293.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-cursor: hand;" text="Biblioteca Teotonio Vilela" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
