@@ -1,20 +1,17 @@
 package com.sistema.projetobibliotecavirtual.models;
 
-import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Administrador extends Pessoa implements Serializable {
     private String senha;
     private transient Administrador usuarioLogado;
-
+    private boolean status;
     // LISTA PARA GUARDAR ADMINS
 
-    public Administrador(String nome, String cpf, String email, String senha) {
+    public Administrador(String nome, String cpf, String email, String senha, boolean status) {
         super(nome, cpf, email);
         this.senha = senha;
+        this.status = false;
     }
 
     public Administrador getUsuarioLogado() {
@@ -31,5 +28,13 @@ public class Administrador extends Pessoa implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

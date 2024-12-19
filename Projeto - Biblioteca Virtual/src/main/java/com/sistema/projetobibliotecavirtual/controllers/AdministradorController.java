@@ -4,14 +4,20 @@ import com.sistema.projetobibliotecavirtual.models.Administrador;
 import com.sistema.projetobibliotecavirtual.services.SerializacaoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,20 +31,26 @@ public class AdministradorController extends TrocarTelasController {
     @FXML
     Label alerta;
     @FXML
-    Button botaoEditar, botaoSelecao;
+    Button botaoEditar, botaoSelecao, botaoDeslogar;
     @FXML
     GridPane gridAdmins;
+    @FXML
+    CheckBox check_logado;
 
     private static List<Administrador> listaAdministradores = new ArrayList<>();
     Administrador logado = null;
+
+    public static List<Administrador> getListaAdministradores() {
+        return listaAdministradores;
+    }
 
     @FXML
     private void initialize() {
         if (gridAdmins != null) {
             listarAdministradores(listaAdministradores);
-            gridAdmins.setHgap(100);
-            gridAdmins.setVgap(10);
-            gridAdmins.setStyle("-fx-padding: 10; -fx-alignment: top-center;");
+            gridAdmins.setHgap(95);
+            gridAdmins.setVgap(15);
+            gridAdmins.setStyle("-fx-padding: 5; -fx-alignment: top-center;");
         } if (botaoEditar != null) {
             botaoEditar.setVisible(false);
         }
@@ -95,7 +107,7 @@ public class AdministradorController extends TrocarTelasController {
                 return;
             }
         }
-        Administrador adminNovo = new Administrador(nome, cpf, email, senha);
+        Administrador adminNovo = new Administrador(nome, cpf, email, senha, false);
         listaAdministradores.add(adminNovo);
         alerta.setText("Administrador cadastrado com sucesso!");
         limparCampos();
@@ -123,6 +135,7 @@ public class AdministradorController extends TrocarTelasController {
     private void loginAdministrador(ActionEvent event) {
         String email = campoEmail.getText().trim();
         String senha = campoSenha.getText().trim();
+        boolean status = check_logado.isSelected();
 
         if(email.isEmpty() || senha.isEmpty()) {
             alerta.setText("Preencha todos os campos");
@@ -132,6 +145,8 @@ public class AdministradorController extends TrocarTelasController {
         for (Administrador admin : listaAdministradores) {
             if (admin.getEmail().equals(email) && admin.getSenha().equals(senha)) {
                 admin.setUsuarioLogado(admin);
+                admin.setStatus(status);
+                salvarListaAdministradores("administradores.ser");
                 alerta.setText("Login realizado com sucesso!");
                 menuLivros(event);
             }
@@ -195,7 +210,7 @@ public class AdministradorController extends TrocarTelasController {
             campoNovaSenhaNovamente.setDisable(true);
             //System.out.println("teste aberto");
             botaoEditar.setVisible(false);
-            botaoSelecao.setText("Editar");
+            botaoSelecao.setText("EDITAR");
         } else {
             campoNovoNome.setText(logado.getNome());
             campoNovoCpf.setText(logado.getCpf());
@@ -208,7 +223,7 @@ public class AdministradorController extends TrocarTelasController {
             campoNovaSenha.setDisable(false);
             campoNovaSenhaNovamente.setDisable(false);
             //System.out.println("teste fechado");
-            botaoSelecao.setText("Cancelar");
+            botaoSelecao.setText("CANCELAR");
             botaoEditar.setVisible(true);
         }
     }
@@ -235,6 +250,7 @@ public class AdministradorController extends TrocarTelasController {
             Button remover = new Button("Remover");
             remover.setStyle("-fx-font-size: 14px; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-color: #FF3B3B; -fx-cursor:hand");
             remover.setOnAction(event -> removerAdministrador(administrador));
+
             VBox itemAdmin = new VBox(5, imagemCapa, nome, cpf, remover);
             itemAdmin.setStyle("-fx-alignment: center; -fx-background-color: #001A66; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-color: black; -fx-padding: 10;");
             itemAdmin.setSpacing(15);
@@ -277,6 +293,45 @@ public class AdministradorController extends TrocarTelasController {
         listarAdministradores(adminsFiltrados);
     }
 
+    public void menuLivrosDireto(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/view/MenuLivrosView.fxml"));
+            Parent root = loader.load();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deslogar() {
+        for (Administrador admin : listaAdministradores) {
+            if (admin.getUsuarioLogado() != null) {
+                admin.setUsuarioLogado(null);
+                admin.setStatus(false);
+            }
+        }
+        salvarListaAdministradores("administradores.ser");
+        abrirTelaLogin();
+    }
+
+    @FXML
+    private void abrirTelaLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/view/AdminLoginView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            Stage currentStage = (Stage) botaoDeslogar.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void salvarListaAdministradores(String caminhoArquivo) {
         SerializacaoService.salvarObjeto(listaAdministradores, caminhoArquivo);

@@ -40,7 +40,7 @@
 #box_menu {
     -fx-background-color: #001A66;
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0); /* Sombra */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
     -fx-alignment: center;
 }
 

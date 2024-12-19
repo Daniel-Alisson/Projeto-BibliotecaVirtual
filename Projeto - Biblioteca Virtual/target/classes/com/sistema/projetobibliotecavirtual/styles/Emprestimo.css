@@ -40,7 +40,7 @@
 #box_menu {
     -fx-background-color: #001A66;
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0); /* Sombra */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
     -fx-alignment: center;
     -fx-padding: 20px;
 }
@@ -73,18 +73,6 @@
     -fx-pref-height: 50px;
     -fx-background-color: #F6F6FE;
     -fx-font-size: 14px;
-}
-
-#campoGenero {
-    -fx-pref-width: 420px;
-    -fx-pref-height: 50px;
-    -fx-background-color: #F6F6FE;
-    -fx-font-size: 14px;
-}
-
-#label_titulo, #label_autor, #label_editora, #label_editora, #label_id, #label_estoque, #label_genero {
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
 }
 
 #alerta {

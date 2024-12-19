@@ -25,14 +25,14 @@
     -fx-cursor: hand;
 }
 
-#botaoMenu, #botaoLivros, #botaoEmprestimo, #botaoSair {
+#botaoMenu, #botaoEmprestimo, #botaoSair {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-cursor: hand;
 }
 
-#label1, #label2, #label3, #label4 {
+#label1, #label2 {
     -fx-text-fill: white;
     -fx-font-size: 16px;
 }
@@ -45,28 +45,26 @@
     -fx-padding: 20px;
 }
 
-#botaoAlunos {
-    -fx-background-color: #FF3B3B;
+#botaoBuscar, #botaoSelecao, #botaoEditar, #botaoDeslogar {
+    -fx-background-color: green;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-background-radius: 5px;
     -fx-cursor: hand;
-    -fx-pref-width: 600px;
+    -fx-pref-width: 150px;
     -fx-pref-height: 50px;
 }
 
-#campoNome, #campoMatricula, #campoTurma, #campoTelefone {
-    -fx-pref-width: 600px;
+#botaoDeslogar {
+    -fx-background-color: FF3B3B;
+}
+
+#campoID {
+    -fx-pref-width: 70px;
     -fx-pref-height: 50px;
     -fx-background-color: #F6F6FE;
     -fx-font-size: 14px;
-    -fx-font-alignment: center;
-}
-
-#label_nome, #label_turma, #label_matricula, #label_telefone {
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
 }
 
 #alerta {
@@ -78,4 +76,21 @@
     -fx-font-weight: bold;
     -fx-font-size: 36px;
     -fx-alignment: center;
+}
+
+#label_nome, #label_email, #label_cpf, #label_senha, #label_senhaNovamente {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+#campoNovoNome, #campoNovoEmail, #campoNovoCpf, #campoNovaSenha, #campoNovaSenhaNovamente, #campoBuscaCpf {
+    -fx-pref-width: 370px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #F6F6FE;
+    -fx-font-size: 14px;
+    -fx-font-alignment: center;
+}
+
+#campoBuscaCpf {
+    -fx-pref-width: 150px;
 }

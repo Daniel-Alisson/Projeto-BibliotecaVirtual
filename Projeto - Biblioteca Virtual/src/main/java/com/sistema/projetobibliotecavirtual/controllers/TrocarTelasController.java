@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -15,6 +18,8 @@ import java.io.IOException;
 public class TrocarTelasController {
     @FXML
     private ImageView iconePerfil;
+    @FXML
+    private Button botaoDeslogar;
 
     @FXML
     public void adminCadastro(ActionEvent event) {
@@ -125,7 +130,7 @@ public class TrocarTelasController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sistema/projetobibliotecavirtual/view/PerfilAdminView.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) iconePerfil.getScene().getWindow(); // Obtém a janela atual
+            Stage stage = (Stage) iconePerfil.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
