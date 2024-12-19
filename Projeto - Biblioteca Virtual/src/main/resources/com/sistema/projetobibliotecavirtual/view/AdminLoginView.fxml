@@ -42,7 +42,7 @@
                      </font>
                   </Label>
                   <CheckBox fx:id="check_logado" layoutX="16.0" layoutY="257.0" mnemonicParsing="false" text="Manter logado" />
-                  <Button fx:id="botaoSenha" focusTraversable="false" layoutX="393.0" layoutY="252.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="172.0" text="Esqueceu a senha?" />
+                  <Button fx:id="botaoSenha" focusTraversable="false" layoutX="423.0" layoutY="252.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="142.0" text="Esqueceu a senha?" />
                   <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="24.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../imagens/icone_email.png" />

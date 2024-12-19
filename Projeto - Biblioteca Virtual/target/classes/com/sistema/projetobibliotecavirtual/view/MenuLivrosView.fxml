@@ -14,18 +14,18 @@
 
 <AnchorPane maxHeight="815.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" style="-fx-background-color: #A8C7FF;" stylesheets="@../styles/MenuLivros.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.MenuLivrosController">
    <children>
-      <AnchorPane layoutX="90.0" layoutY="72.0" prefHeight="724.0" prefWidth="1348.0" style="-fx-background-color: #001A66; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0);">
+      <AnchorPane fx:id="box_menu" layoutX="90.0" layoutY="72.0" prefHeight="724.0" prefWidth="1348.0">
          <children>
-            <TextField fx:id="campoBusca" layoutX="24.0" layoutY="63.0" promptText="ID" style="-fx-pref-height: 40; -fx-background-radius: 5px;">
+            <TextField fx:id="campoBusca" alignment="CENTER" layoutX="24.0" layoutY="58.0" promptText="ID">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button layoutX="211.0" layoutY="63.0" mnemonicParsing="false" onAction="#buscarLivro" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14PX; -fx-background-radius: 5px; -fx-cursor: hand; -fx-pref-height: 40; -fx-pref-width: 140;" text="BUSCAR">
+            <Button fx:id="botaoBusca" layoutX="118.0" layoutY="58.0" mnemonicParsing="false" onAction="#buscarLivro" text="BUSCAR">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Label layoutX="24.0" layoutY="14.0" text="Busca de Livros" textFill="WHITE">
+            <Label fx:id="box_titulo" layoutX="24.0" layoutY="14.0" text="Busca de Livros" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -39,21 +39,21 @@
              </ScrollPane>
          </children>
       </AnchorPane>
-       <HBox fx:id="header_botoes" layoutX="949.0" prefHeight="60.0" prefWidth="595.0">
+       <HBox fx:id="header_botoes" layoutX="908.0" prefHeight="60.0" prefWidth="636.0">
            <children>
-               <Button focusTraversable="false" onAction="#livroCadastro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Livros" />
+               <Button fx:id="botaoLivros" focusTraversable="false" onAction="#livroCadastro" prefHeight="30.0" prefWidth="79.0" text="Livros" />
                <Label fx:id="label1" text="|" textFill="WHITE">
                    <font>
                        <Font name="System Bold" size="24.0" />
                    </font>
                </Label>
-               <Button focusTraversable="false" onAction="#alunoCadastro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Alunos" />
+               <Button fx:id="botaoAlunos" focusTraversable="false" onAction="#alunoCadastro" text="Alunos" />
                <Label fx:id="label2" text="|" textFill="WHITE">
                    <font>
                        <Font name="System Bold" size="24.0" />
                    </font>
                </Label>
-               <Button focusTraversable="false" onAction="#emprestimo" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Emprestimo" />
+               <Button fx:id="botaoEmprestimo" focusTraversable="false" onAction="#emprestimo" text="Emprestimo" />
                <Label fx:id="label3" text="|" textFill="WHITE">
                    <font>
                        <Font name="System Bold" size="24.0" />
@@ -72,18 +72,14 @@
                <Button fx:id="botaoSair" focusTraversable="false" onAction="#sairSistema" text="Sair" />
            </children>
        </HBox>
-       <HBox alignment="CENTER" layoutX="305.0" prefHeight="60.0" prefWidth="659.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
+       <HBox alignment="CENTER" layoutX="309.0" prefHeight="60.0" prefWidth="603.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
            <children>
                <Region prefHeight="39.0" prefWidth="494.0" />
            </children>
        </HBox>
-       <HBox fx:id="header_titulo" alignment="CENTER" prefHeight="60.0" prefWidth="400.0" spacing="10" style="-fx-background-color: #001A66; -fx-padding: 10;">
+       <HBox fx:id="header_titulo" alignment="CENTER" layoutX="-8.0" prefHeight="50.0" prefWidth="321.0" spacing="10" style="-fx-background-color: #001A66;">
            <children>
-               <Label fx:id="titulo" prefHeight="30.0" prefWidth="361.0" text="Biblioteca Teotonio Vilela">
-                   <font>
-                       <Font size="14.0" />
-                   </font>
-               </Label>
+               <Button fx:id="titulo" focusTraversable="false" onAction="#menuLivros" prefHeight="42.0" prefWidth="372.0" text="Biblioteca Teotonio Vilela" />
            </children>
        </HBox>
    </children>

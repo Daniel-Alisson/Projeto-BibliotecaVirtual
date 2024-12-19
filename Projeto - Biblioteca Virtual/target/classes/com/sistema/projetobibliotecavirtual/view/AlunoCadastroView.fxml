@@ -11,51 +11,69 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" stylesheets="@../styles/AdminLogin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AlunoController">
+<AnchorPane maxHeight="816.0" maxWidth="1536.0" minHeight="816.0" minWidth="1536.0" prefHeight="816.0" prefWidth="1536.0" stylesheets="@../styles/AlunoCadastro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.projetobibliotecavirtual.controllers.AlunoController">
    <children>
       <VBox spacing="10" />
-      <VBox alignment="CENTER" layoutX="549.0" layoutY="223.0" prefHeight="370.0" prefWidth="438.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0);">
+      <AnchorPane fx:id="box_menu" layoutX="420.0" layoutY="102.0" prefHeight="610.0" prefWidth="690.0">
          <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="198.0" text="Cadastrar Aluno" textFill="WHITE">
+            <Label fx:id="box_titulo" layoutX="185.0" layoutY="42.0" prefHeight="43.0" prefWidth="339.0" text="Cadastro de Aluno" />
+            <Label fx:id="label_nome" layoutX="55.0" layoutY="130.0" prefHeight="15.0" prefWidth="166.0" text="Nome" />
+            <TextField fx:id="campoNome" layoutX="55.0" layoutY="149.0" prefHeight="40.0" prefWidth="300.0" promptText="Nome" />
+            <Label fx:id="label_turma" layoutX="54.0" layoutY="210.0" prefHeight="15.0" prefWidth="166.0" text="Turma" />
+            <TextField fx:id="campoTurma" layoutX="55.0" layoutY="228.0" prefHeight="40.0" prefWidth="300.0" promptText="Turma" />
+            <TextField fx:id="campoMatricula" layoutX="55.0" layoutY="305.0" prefHeight="40.0" prefWidth="300.0" promptText="Matricula" />
+            <TextField fx:id="campoTelefone" layoutX="55.0" layoutY="384.0" prefWidth="300.0" promptText="Telefone" />
+            <Label fx:id="label_matricula" layoutX="55.0" layoutY="287.0" prefHeight="15.0" prefWidth="166.0" text="Matricula" />
+            <Label fx:id="label_telefone" layoutX="55.0" layoutY="366.0" prefHeight="18.0" prefWidth="166.0" text="Telefone" />
+            <Button fx:id="botaoAlunos" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="458.0" onAction="#cadastrarAlunos" prefWidth="100.0" text="CADASTRAR" textAlignment="CENTER" />
+            <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="122.0" layoutY="551.0" prefHeight="20.0" prefWidth="465.0" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <VBox prefHeight="289.0" prefWidth="398.0" spacing="10">
-               <TextField fx:id="campoNome" prefHeight="40.0" prefWidth="300.0" promptText="Nome" />
-               <TextField fx:id="campoTurma" prefHeight="40.0" prefWidth="300.0" promptText="Turma" />
-               <TextField fx:id="campoMatricula" prefHeight="40.0" prefWidth="300.0" promptText="Matricula" />
-               <TextField fx:id="campoTelefone" prefHeight="40.0" prefWidth="300.0" promptText="Telefone" />
-               <AnchorPane prefHeight="80.0" prefWidth="398.0">
-                  <children>
-                     <Button alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="4.0" onAction="#cadastrarAlunos" prefWidth="100.0" style="-fx-background-color: #FF3B3B; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-pref-width: 140; -fx-pref-height: 35;" text="CADASTRAR" textAlignment="CENTER" />
-                     <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="55.0" prefHeight="18.0" prefWidth="382.0" textAlignment="CENTER" textFill="WHITE">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </AnchorPane>
-            </VBox>
          </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutX="305.0" prefHeight="60.0" prefWidth="1234.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
+      </AnchorPane>
+      <HBox fx:id="header_botoes" layoutX="908.0" prefHeight="60.0" prefWidth="636.0">
          <children>
-            <Region prefHeight="200.0" prefWidth="800.0" />
-            <Button onAction="#livroCadastro" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Livros" />
-            <Button onAction="#menuLivros" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Menu" />
-            <Button onAction="#emprestimo" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Emprestimo" />
+            <Button fx:id="botaoMenu" focusTraversable="false" onAction="#menuLivros" prefHeight="30.0" prefWidth="79.0" text="Menu" />
+            <Label fx:id="label1" text="|" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoLivros" focusTraversable="false" onAction="#livroCadastro" text="Livros" />
+            <Label fx:id="label2" text="|" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoEmprestimo" focusTraversable="false" onAction="#emprestimo" text="Emprestimo" />
+            <Label fx:id="label3" text="|" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
             <ImageView fx:id="iconePerfil" fitHeight="26.0" fitWidth="41.0" onMouseClicked="#telaPerfil" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@../../../../imagens/Icone-Perfil.png" />
                </image>
             </ImageView>
-            <Button onAction="#sairSistema" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Sair" />
+            <Label fx:id="label4" text="|" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="botaoSair" focusTraversable="false" onAction="#sairSistema" text="Sair" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="-26.0" layoutY="-4.0" prefHeight="64.0" prefWidth="339.0" spacing="10" style="-fx-background-color: #001A66;">
+      <HBox alignment="CENTER" layoutX="309.0" prefHeight="60.0" prefWidth="603.0" spacing="20" style="-fx-background-color: #001A66; -fx-padding: 10;">
          <children>
-            <Button alignment="BOTTOM_LEFT" contentDisplay="CENTER" focusTraversable="false" onAction="#menuLivros" prefHeight="43.0" prefWidth="293.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-cursor: hand;" text="Biblioteca Teotonio Vilela" />
+            <Region prefHeight="39.0" prefWidth="494.0" />
+         </children>
+      </HBox>
+      <HBox fx:id="header_titulo" alignment="CENTER" layoutX="-8.0" prefHeight="50.0" prefWidth="321.0" spacing="10" style="-fx-background-color: #001A66;">
+         <children>
+            <Button fx:id="titulo" focusTraversable="false" onAction="#menuLivros" prefHeight="42.0" prefWidth="372.0" text="Biblioteca Teotonio Vilela" />
          </children>
       </HBox>
    </children>
