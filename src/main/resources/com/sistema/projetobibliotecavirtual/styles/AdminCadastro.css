@@ -1,0 +1,82 @@
+/* Fundo azul claro - #A8C7FF;*/
+/* Fundo escuro - #001A66;*/
+
+.root {
+    -fx-background-color: #A8C7FF;
+    -fx-font-family: "Segoe UI";
+}
+
+#header_botoes {
+    -fx-background-color: #001A66;
+    -fx-spacing: 25px;
+    -fx-alignment: center;
+}
+
+#header_titulo {
+    -fx-background-color: #001A66;
+    -fx-padding: 10px;
+}
+
+#titulo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+#botaoLogin, #botaoSair, #botaoSenha {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+#label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+#botaoLogin, #botaoSair {
+    -fx-font-size: 16px;
+}
+
+#label1, #label2, #label3, #label4, #label5 {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+#box_cadastro {
+    -fx-background-color: #001A66;
+    -fx-padding: 20px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+}
+
+/*  #F6F6FE */
+#campoNome, #campoCpf, #campoEmail, #campoSenha, #campoSenhaNovamente {
+    -fx-pref-width: 550px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #F6F6FE;
+    -fx-padding: 0 10px;
+    -fx-font-size: 14px;
+}
+
+#botaoCadastro {
+    -fx-background-color: #FF3B3B;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-pref-width: 550px;
+    -fx-pref-height: 50px;
+}
+
+#box_titulo {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+    -fx-alignment: center;
+}
+

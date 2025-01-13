@@ -1,0 +1,81 @@
+/* Fundo azul claro - #A8C7FF;*/
+/* Fundo escuro - #001A66;*/
+
+.root {
+    -fx-background-color: #A8C7FF;
+    -fx-font-family: "Segoe UI";
+}
+
+#header_botoes {
+    -fx-background-color: #001A66;
+    -fx-spacing: 25px;
+    -fx-alignment: center;
+}
+
+#header_titulo {
+    -fx-background-color: #001A66;
+    -fx-pref-height: 60px;
+}
+
+#titulo {
+    -fx-background-color: transparent;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+#botaoMenu, #botaoLivros, #botaoEmprestimo, #botaoSair {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+#label1, #label2, #label3, #label4 {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+#box_menu {
+    -fx-background-color: #001A66;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+#botaoAlunos {
+    -fx-background-color: #FF3B3B;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 50px;
+}
+
+#campoNome, #campoMatricula, #campoTurma, #campoTelefone {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #F6F6FE;
+    -fx-font-size: 14px;
+    -fx-font-alignment: center;
+}
+
+#label_nome, #label_turma, #label_matricula, #label_telefone {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+#alerta {
+    -fx-font-alignment: center;
+}
+
+#box_titulo {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+    -fx-alignment: center;
+}
